@@ -1,0 +1,107 @@
+.title {
+    background-color: var(--light-color);
+    padding: 1rem;
+    border-radius: 20px;
+    text-align: center;
+    font-size: 36px;
+}
+
+
+.overall-data {
+    display: flex;
+    gap: 10px;
+
+    .box {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        gap: 15px;
+        width: 100%;
+        max-width: 400px;
+        background-color: var(--light-color);
+        border-radius: 20px;
+        box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.5);
+        padding: 1rem;
+
+        .data-name {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+    }
+}
+
+.recentData {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+
+    .recentPosts {
+        background-color: var(--light-color);
+        width: 100%;
+        max-width: 400px;
+        padding: 2rem;
+        box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.5);
+        border-radius: 20px;
+
+        h1 {
+            text-align: center;
+            margin-bottom: 0.5em;
+        }
+
+        .recentPosts-container {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+
+            .post {
+                width: 100%;
+                background-color: var(--primary-color);
+                box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.5), -4px -4px 4px rgba(0, 0, 0, 0.5);
+                padding: 2rem;
+                border-radius: 20px;
+
+                .post-header {
+                    display: flex;
+                    justify-content: space-between;
+
+                    h3 {
+                        white-space: nowrap;
+                        text-overflow: ellipsis;
+                        overflow: hidden;
+                    }
+                }
+            }
+        }
+    }
+
+    .topUsers {
+        background-color: var(--light-color);
+        width: 100%;
+        max-width: 700px;
+        padding: 2rem;
+        box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.5);
+        border-radius: 20px;
+        height: fit-content;
+
+        h1 {
+            text-align: center;
+            margin-bottom: 0.5em;
+        }
+
+        .mostfriends-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            
+            .friends {
+                position: relative;
+               background-color: var(--primary-color);
+               padding: 2rem;
+               box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.5);
+               border-radius: 20px;
+            }
+        }
+        
+    }
+}
