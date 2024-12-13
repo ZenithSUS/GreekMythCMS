@@ -15,11 +15,16 @@ table {
         padding: 0.5rem;
     }
 
+    
+
     tr {
         .user-options {
             display: flex;
+            justify-content: center;
+            align-items: center;
             gap: 10px;
             border: none;
+            
 
             a {
                 text-decoration: none;
@@ -49,4 +54,5 @@ table {
 
 table, tr, td, th {
     border: 2px solid var(--dark-color);
+    height: 100%;
 }

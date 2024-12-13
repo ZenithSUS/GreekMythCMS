@@ -77,6 +77,9 @@ const fetchAllApis = async () => {
     if(currentURL === "users.html") {
       userDisplayData(fetchedData.users);
     }
+    if(currentURL === "posts.html"){
+      postDisplayData(fetchedData.posts);
+    }
 
     console.log("Fetched data:", fetchedData);
   });
