@@ -97,9 +97,8 @@ header {
 nav {
     opacity: 0.8;
     position: fixed;
-    top: 0;
+    top: 100px;
     left: 0;
-    margin-top: 6.25rem;
     display: flex;
     align-items: center;
     flex-direction: column;
@@ -107,16 +106,31 @@ nav {
     background-color: var(--primary-color);
     padding: 1rem;
     box-shadow: 4px 4px 4px rgba(0, 0, 0, .5);
-    height: 100%;
+    height: calc(100% - 100px);
     width: 100%;
     max-width: 240px;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    scrollbar-width: none;
+
+    &:hover {
+        scrollbar-width: thin;
+      }
+
+    h1 {
+        padding: 0.5rem;
+        width: 100%;
+    }
 
     a {
+        display: block;
         text-decoration: none;
         color: var(--dark-color);
         font-size: 1.5rem;
         padding: 1rem;
         width: 100%;
+        margin-left: 1rem;
+        white-space: nowrap;
     }
 }
 
