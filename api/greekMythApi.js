@@ -70,17 +70,8 @@ const fetchAllApis = async () => {
   fetchAllApis().then(() => {
 
     const currentURL = current_URL_Location();
-
-    if(currentURL === "index.html"){
-      indexDisplayData(fetchedData);
-    }
-    if(currentURL === "users.html") {
-      userDisplayData(fetchedData.users);
-    }
-    if(currentURL === "posts.html"){
-      postDisplayData(fetchedData.posts);
-    }
-
+    checkURL(currentURL);
+    
     console.log("Fetched data:", fetchedData);
   });
 
@@ -99,4 +90,22 @@ const current_URL_Location = () => {
   const pathname = window.location.pathname;
   const lastPathSegment = pathname.split('/').pop();
   return lastPathSegment;
+}
+
+const checkURL = (currentURL) => {
+  if(currentURL === "index.html"){
+    indexDisplayData(fetchedData);
+  }
+  if(currentURL === "users.html") {
+    userDisplayData(fetchedData.users);
+  }
+  if(currentURL === "posts.html"){
+    postDisplayData(fetchedData.posts);
+  }
+  if(currentURL === "comments.html"){
+    commentDisplayData(fetchedData.comments);
+  }
+  if(currentURL === "groups.html"){
+    groupDisplayData(fetchedData.groups);
+  }
 }

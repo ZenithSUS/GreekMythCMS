@@ -13,7 +13,7 @@
         <h1>GreekMyth Content Management System</h1>
         <div class="userContainer">
             <div class="user">
-                <h2 id="username"></h2>
+                <h2 id="username">Loading...</h2>
                 <img id="profile-pic" src="placeholder.png" alt="profile">
             </div>
             
@@ -23,11 +23,17 @@
         </div>
     </header>
     <nav>
-        <a href="index.html">Dashboard</a>
-        <a href="navigate/users.html">Users</a>
-        <a href="navigate/posts.html">Posts</a>
-        <a href="navigate/groups.html">Groups</a>
-        <a href="navigate/comments.html">Comments</a>
+        <h1>Navigation</h1>
+            <a href="index.html">Dashboard</a>
+            <a href="navigate/users.html">Users</a>
+            <a href="navigate/posts.html">Posts</a>
+            <a href="navigate/groups.html">Groups</a>
+            <a href="navigate/comments.html">Comments</a>
+        <h1>Settings</h1>
+            <a href="admin/settings/edit_account">Edit Account</a>
+            <a href="admin/settings/change_password">Change Password</a>
+            <a href="admin/settings/delete_account">Delete Account</a>
+            <a href="admin/settings/preferences">Preferences</a>
     </nav>
     <main>
         <h1 class="title">Dashboard</h1>
@@ -38,39 +44,39 @@
                     <h1>Users</h1>
                     <img src="src/ui/icons8-user-60.png" alt="user"/>
                 </div>
-                <h2 id="totalUsers"></h2>
+                <h2 id="totalUsers">Loading..</h2>
             </div>
             <div class="box">
                 <div class="data-name">
                     <h1>Posts</h1>
                     <img src="src/ui/icons8-post-64.png" alt="post">
                 </div>
-                <h2 id="totalPosts"></h2>
+                <h2 id="totalPosts">Loading..</h2>
             </div>
             <div class="box">
                 <div class="data-name">
                     <h1>Groups</h1>
                     <img src="src/ui/icons8-group-64.png" alt="group">
                 </div>      
-                <h2 id="totalGroups"></h2>
+                <h2 id="totalGroups">Loading..</h2>
             </div>
             <div class="box">
                 <div class="data-name">
                     <h1>Comments</h1>
                     <img src="src/ui/icons8-comment-50.png" alt="comment">
                 </div>
-                <h2 id="totalComments"></h2>
+                <h2 id="totalComments">Loading..</h2>
             </div>
         </div>
 
         <div class="recentData">
             <div class="recentPosts">
                 <h1>Recent Posts</h1>
-                <div id="recentPosts-container" class="recentPosts-container"></div>
+                <div id="recentPosts-container" class="recentPosts-container"><h1>Loading...</h1></div>
             </div>
             <div class="topUsers">
                 <h1>Top Users With Most Friends</h1>
-                <div id="mostfriends-container" class="mostfriends-container"></div>
+                <div id="mostfriends-container" class="mostfriends-container"><h1>Loading...</h1></div>
             </div>
         </div>
 

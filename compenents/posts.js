@@ -10,9 +10,9 @@ const postDisplayData = (posts) => {
                 <td>${DateFormat(post.created_at)}</td>
                 <td>${post.name != null ? post.name : "N/A"}</td>
                 <td class='user-options'>
-                    <a class='edit' href='../admin/edit_user'>Edit</a>
-                    <a class='view' href='../admin/view_user'>View</a>
-                    <a class='delete' href='../admin/delete_user'>Delete</a>
+                    <a class='edit' href='../admin/posts/edit_post'>Edit</a>
+                    <a class='view' href='../admin/posts/view_post'>View</a>
+                    <a class='delete' href='../admin/posts/delete_post'>Delete</a>
                 </td>
             </tr>    
             
@@ -25,7 +25,6 @@ const postDisplayData = (posts) => {
 
     const elipsisContent = (content) => {
         let elipsisText = " ";
-        console.log(content.length)
         elipsisText = content.length <= 15 ? content : content.substr(0, 30) + '...';
         return elipsisText;
     }

@@ -17,7 +17,7 @@ const indexDisplayData = (data) => {
         postsContainer.innerHTML = posts.data.slice(0, 5).map(post => `
           <div class="post">
             <div class="post-header">
-              <h3>${post.title}</h3>
+              <h3>${elipsisContent(post.title)}</h3>
               <h3>${DateFormat(post.created_at)}</h3>
             </div>
           </div>
@@ -44,6 +44,11 @@ const indexDisplayData = (data) => {
       return friends.sort((a, b) => b.totalFriends - a.totalFriends)
     }
 
+    const elipsisContent = (content) => {
+      let elipsisText = " ";
+      elipsisText = content.length <= 20 ? content : content.substr(0, 15) + '...';
+      return elipsisText;
+  }
 
     overallData(data);
     recentPosts(data.posts);
