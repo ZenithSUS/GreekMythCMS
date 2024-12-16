@@ -4,6 +4,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../global.css">
     <link rel="stylesheet" href="../styles/index.css">
+    <link rel="stylesheet" href="../styles/table.css">
     <link rel="stylesheet" href="../styles/comments.css">
     <title>GreekMyth CMS</title>
 </head>
@@ -37,9 +38,27 @@
             <a href="../admin/settings/preferences">Preferences</a>
     </nav>
     <main>
-
+        <h1 class="title">Comments</h1>
+        <table>
+            <thead>
+                <tr>
+                    <th>Author</th>
+                    <th>Content</th>
+                    <th>Date</th>
+                    <th>Likes</th>
+                    <th>Dislikes</th>
+                    <th>Options</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td style="width: 100%;" colspan="5"><h1>Loading...</h1></td>
+                </tr>
+            </tbody>
+        </table>
     </main>
     <script> if(!token)  window.location.href = '../auth/login.html'; </script>
+    <script type="text/javascript" src="../compenents/comments.js"></script>
     <script type="text/javascript" src="../api/auth/logout.js"></script>
 </body>
 </html>

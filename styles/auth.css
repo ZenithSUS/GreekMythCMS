@@ -50,6 +50,21 @@
             }
         }
 
+        .image-field {
+            display: flex;
+            align-items: center;
+            flex-direction: column;
+            width: 100%;
+            gap: 10px;
+
+            img {
+                height: 6rem;
+                width: 6rem;
+                border-radius: 20px;
+                border: 2px solid var(--dark-color);
+            }
+        }
+
         .group-container {
             display: flex;
             flex-direction: column;

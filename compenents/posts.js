@@ -5,7 +5,7 @@ const postDisplayData = (posts) => {
         tableBody.innerHTML = posts.slice(0, 10).map(post => `
            <tr>
                 <td>${post.username}</td>
-                <td>${post.title}</td>
+                <td>${elipsisContent(post.title)}</td>
                 <td class='post-content'>${elipsisContent(post.content)}</td>
                 <td>${DateFormat(post.created_at)}</td>
                 <td>${post.name != null ? post.name : "N/A"}</td>

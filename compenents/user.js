@@ -6,6 +6,7 @@ const userDisplayData = (user) =>{
             <tr>
                 <td>${user.username}</td>
                 <td>${user.email}</td>
+                <td><img src="${user.profile_pic}" alt="No Image"></td>
                 <td>${user.totalFriends}</td>
                 <td>${user.bio != "" ? user.bio : "Not bio"}</td>
                 <td>${DateFormat(user.joined_at)}</td>
