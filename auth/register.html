@@ -12,7 +12,7 @@
 </head>
 <body>
     <div class="registerContainer">
-        <form id="registerForm">
+        <form id="registerForm" enctype="multipart/form-data">
             <h1>Register</h1>
             <div class="input-field">
                 <label for="Username">Username</label>
@@ -32,12 +32,18 @@
                 <label for="Confirm Password">Confirm Password</label>
                 <input type="password" id="confirm_password" name="confirm_password">
             </div>
+            <div class="image-field">
+                <label for="Image">Image</label>
+                <img src="../src/images/default.jpg" alt="user" id="profilePic">
+                <input type="file" name="image" accept="image/*" id="image">
+            </div>
             <div class="group-container">
                 <button type="submit" id="Process" value="Register">Register</button>
                 <p>Already have an account? <a href="login.html">Sign In</a></p>
             </div>
         </form>
     </div>
+    <script src="../compenents/display_picture.js"></script>
     <script src="../api/auth/greekmythApiAuth.js"></script>
     <script src="../api/auth/greekMythApiAuthErrors.js"></script>
 </body>
