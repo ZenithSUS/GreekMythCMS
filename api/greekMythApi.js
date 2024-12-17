@@ -22,6 +22,7 @@ async function fetchUserData() {
       });
       const data = await response.json();
       document.getElementById('username').innerHTML = data.data[0].username;
+      document.getElementById('profile-pic').src = data.data[0].image_src;
     
     } catch (error) {
       console.error('Error fetching user data:', error);

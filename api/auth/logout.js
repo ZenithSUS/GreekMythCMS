@@ -3,15 +3,16 @@ const form = document.getElementById('logout');
 
 form.addEventListener("submit", async (e) => {
     e.preventDefault();
+    let formData = new FormData();
 
+    formData.append('Process', form.Process.value)
 
     const response = await fetch(url, {
         method: "POST",
         headers: {
-            "Content-Type": "application/json",
             Authorization: `Bearer ${token}`
         },
-        body: JSON.stringify({Process: form.Process.value})
+        body: formData,
     });
 
     const data = await response.json();
