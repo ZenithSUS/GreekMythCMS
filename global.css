@@ -60,6 +60,8 @@ header {
 
     }
 
+    
+
     .userContainer {
         display: flex;
         align-items: center;
@@ -71,6 +73,12 @@ header {
             gap: 0.5rem;
             justify-content: center;
             align-items: center;
+        }
+
+        img {
+            height: 4rem;
+            width: 4rem;
+            border-radius: 100%;
         }
 
         button {
