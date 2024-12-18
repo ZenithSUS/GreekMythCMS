@@ -6,3 +6,88 @@
     font-size: 36px;
     box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.5), -4px -4px 4px rgba(0, 0, 0, 0.5);
 }
+
+.form-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+
+    form {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        background-color: var(--light-color);
+        width: 100%;
+        max-width: 600px;
+        padding: 2rem;
+        border-radius: 20px;
+        box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.5), -4px -4px 4px rgba(0, 0, 0, 0.5);
+
+        .gridBox {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-top: 2rem;
+
+            .userInfo {
+                display: flex;
+                flex-direction: column;
+                gap: 10px;
+
+                .userData {
+                    color: var(--dark-color);
+                }
+            }
+        }
+
+        img {
+            height: 150px;
+            width: 150px;
+            border-radius: 20px;
+            border: 2px solid var(--dark-color);
+        }
+
+        .input-field {
+            display: flex;
+            flex-direction: column;
+            margin: 10px 0 10px 0;
+        }
+
+        label { 
+            font-weight: bold;
+            margin-bottom: 0.25rem;
+        }
+        input {
+            width: 100%;
+            padding: 0.5rem;
+            font-size: 1rem;
+            border-radius: 0.5rem;
+            border: 0.2rem solid var(--dark-color);
+        }
+
+        .edit-options {
+            display: flex;
+            gap: 20px;
+            margin-top: 5px;
+
+            button {
+                width: fit-content;
+                background-color: var(--dark-color);
+                color: var(--light-color);
+                border-radius: 0.5rem;
+                padding: 0.5rem;
+                margin-bottom: 0.5rem;
+                font-size: 1rem;
+                border: 0.2rem solid var(--dark-color);
+                cursor: pointer;
+    
+                &:hover {
+                    transition: background-color 0.5s ease-in-out;
+                    background-color: var(--light-color);
+                    color: var(--dark-color);
+                }
+            }
+        }
+    }
+}

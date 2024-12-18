@@ -11,13 +11,23 @@ const userDisplayData = (user) =>{
                 <td>${user.bio != "" ? user.bio : "Not bio"}</td>
                 <td>${DateFormat(user.joined_at)}</td>
                 <td class='user-options'>
-                    <a class='edit' href='../admin/edit_user'>Edit</a>
-                    <a class='view' href='../admin/view_user'>View</a>
-                    <a class='delete' href='../admin/delete_user'>Delete</a>
+                    <a class='edit' href='../admin/users/edit_user.html' data-id=${user.user_id}>Edit</a>
+                    <a class='view' href='../admin/users/view_user.html' data-id=${user.user_id}>View</a>
+                    <a class='delete' href='../admin/users/delete_user.html' data-id=${user.user_id}>Delete</a>
                 </td>
             </tr>    
             
         `).join(' ');
+
+        // Add event listeners after the table is populated
+        const editLinks = document.querySelectorAll('.edit');
+        editLinks.forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                const userId = link.dataset.id;
+                window.location.href = `../admin/users/edit_user.html?id=${userId}`;
+            });
+        });
     }
 
 
