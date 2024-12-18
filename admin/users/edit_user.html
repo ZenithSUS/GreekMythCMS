@@ -1,0 +1,69 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../styles/users.css">
+    <link rel="stylesheet" href="../../global.css">
+    <title>Edit User</title>
+</head>
+<body>
+    <script type="text/javascript" src="../../api/greekmythApi.js"></script>
+    <script type="text/javascript" src="../../api/edit/edit_user.js"></script>
+    <header>
+        <img class="logo" src="../../src/images/logo_transparent.png" alt="logo">
+        <h1>GreekMyth Content Management System</h1>
+        <div class="userContainer">
+            <div class="user">
+                <img id="profile-pic" src="../../src/images/default.jpg" alt="profile">
+                <h2 id="username">Loading...</h2>
+            </div>
+            
+            <form id="logout">
+                <button type="submit" value="Logout" id="Process" onclick="return confirm('Are you sure you want to logout?')">Logout</button>
+            </form>
+        </div>
+    </header>
+    <nav>
+        <h1>Navigation</h1>
+            <a href="../../index.html">Dashboard</a>
+            <a href="../../navigate/users.html">Users</a>
+            <a href="../../navigate/posts.html">Posts</a>
+            <a href="../../navigate/groups.html">Groups</a>
+            <a href="../../navigate/comments.html">Comments</a>
+        <h1>Settings</h1>
+            <a href="../settings/edit_account">Edit Account</a>
+            <a href="../settings/change_password">Change Password</a>
+            <a href="../settings/delete_account">Delete Account</a>
+            <a href="../settings/preferences">Preferences</a>
+    </nav>
+
+    <main>
+        <div class="form-container">
+            <form>
+                <h1>Edit User Information</h1>
+                <div class="gridBox">
+                    <div class="userInfo">
+                        <img src="../../src/images/default.jpg" alt="Image" id="userImage">
+                        <p>Username: <span class="userData" id="usernameDisplay"></span></p>
+                        <p>Email: <span class="userData" id="emailDisplay"></span></p>
+                    </div>
+                    <div class="formInput-container">
+                        <div class="input-field">
+                            <label for="Username">Username</label>
+                            <input type="text" name="username" id="usernameEdit" placeholder="Username">
+                        </div>
+                        <div class="input-field">
+                            <label for="Username">Email</label>
+                            <input type="text" name="email" id="emailEdit" placeholder="Email">
+                        </div>
+                        <div class="edit-options">
+                            <button type="submit" name="change" id="Change" value="Change">Save Changes</button>
+                            <button type="submit" name="cancel" id="Cancel" value="Cancel">Cancel</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </main>
+</body>
+</html>

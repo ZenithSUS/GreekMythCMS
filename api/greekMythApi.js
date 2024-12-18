@@ -4,6 +4,7 @@ const users_url = "http://localhost/GreekMythApi/api/users.php";
 const groups_url = "http://localhost/GreekMythApi/api/groups.php";
 const comments_url = "http://localhost/GreekMythApi/api/comments.php";
 
+
 // Get User Id and Token
 const token = localStorage.getItem('token');
 const user_id = localStorage.getItem('user_id');
