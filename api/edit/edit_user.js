@@ -14,29 +14,35 @@ document.addEventListener('DOMContentLoaded', async () => {
         document.getElementById('usernameDisplay').innerHTML = user.data[0].username;
         document.getElementById('emailDisplay').innerHTML = user.data[0].email;
     } else {
-        console.error("Failed to fetch data". data.message);
+        console.error("Failed to fetch data", user.message);
     }
 
     const form = document.querySelector('.form-container form');
+    const changeButton = document.getElementById('Change');
 
-    if (form) {
         form.addEventListener('submit', (e) => {
             e.preventDefault(); 
-            // Create a FormData object to collect form data
-            const formData = new FormData(form); 
-
-            // Access individual form fields
-            const username = formData.get('usernameEdit'); 
-            const email = formData.get('emailEdit');
-
-            if (form.Change) {
-            }
-
-            if (form.Cancel) {
-                window.location.href = "../../index.html";
-            }
         });
-    }
+    
+    // If the user clicks change
+    changeButton.addEventListener('click', () => { 
+        let formData = {}
+        const username = santizeInput(form.usernameEdit.value) ? santizeInput(form.usernameEdit.value) : null;
+        const email = santizeInput(form.emailEdit.value) ? santizeInput(form.emailEdit.value) : null;
+        formData = {'usernameEdit': username,
+                    'emailEdit': email
+                }; 
+        
+        console.log(username);
+
+        editRequest(users_url, userId, formData, token);
+    });
+
+    // If the user clicks cancel
+    document.getElementById('Cancel').addEventListener('click', () => {
+        window.location.href = '../../index.html';
+    });
+
   });
 
 const getRequest = async (url, value, token) => {
@@ -61,3 +67,24 @@ const getRequest = async (url, value, token) => {
         return null; 
     }
 };
+
+const editRequest = async (url, userId, formData, token) => {
+
+    const response = await fetch(`${url}?id=${userId}`, {
+        method: "PUT",
+        headers: {
+            Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify(formData)
+    });
+
+    const data = await response.json();
+    console.log(data);
+    if(data.status < 300){
+        alert(data.message);
+        window.location.href = '../../navigate/users.html';
+    } else {
+        checkErrors(data.error)
+    }
+}
+

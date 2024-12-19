@@ -39,7 +39,7 @@
 
     <main>
         <div class="form-container">
-            <form>
+            <form> 
                 <h1>Edit User Information</h1>
                 <div class="gridBox">
                     <div class="userInfo">
@@ -49,21 +49,28 @@
                     </div>
                     <div class="formInput-container">
                         <div class="input-field">
-                            <label for="Username">Username</label>
-                            <input type="text" name="username" id="usernameEdit" placeholder="Username">
+                            <label for="usernameEdit">Username</label> 
+                            <input type="text" name="usernameEdit" id="usernameEdit" class="usernameValid" placeholder="Username"> 
+                            <span id="usernameValid"></span>
                         </div>
                         <div class="input-field">
-                            <label for="Username">Email</label>
-                            <input type="text" name="email" id="emailEdit" placeholder="Email">
+                            <label for="emailEdit">Email</label> 
+                            <input type="text" name="emailEdit" id="emailEdit" placeholder="Email"> 
                         </div>
-                        <div class="edit-options">
-                            <button type="submit" name="change" id="Change" value="Change">Save Changes</button>
-                            <button type="submit" name="cancel" id="Cancel" value="Cancel">Cancel</button>
+                        <div class="edit-options-container">
+                            <div class="edit-options">
+                                <button type="button" id="Change">Save Changes</button> 
+                                <button type="button" id="Cancel">Cancel</button>
+                            </div>
+                            <span id="status" name="status"></span>
                         </div>
                     </div>
                 </div>
             </form>
         </div>
     </main>
+    <script> if(!token)  window.location.href = '../../auth/login.html'; </script>
+    <script type="text/javascript" src="../../api/auth/logout.js"></script>
+    <script type="text/javascript" src="../../api/field_check/greekMythApiFieldErrors.js"></script>
 </body>
 </html>

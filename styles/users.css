@@ -66,28 +66,35 @@
             border: 0.2rem solid var(--dark-color);
         }
 
-        .edit-options {
+        .edit-options-container {
             display: flex;
-            gap: 20px;
-            margin-top: 5px;
+            flex-direction: column;
 
-            button {
-                width: fit-content;
-                background-color: var(--dark-color);
-                color: var(--light-color);
-                border-radius: 0.5rem;
-                padding: 0.5rem;
-                margin-bottom: 0.5rem;
-                font-size: 1rem;
-                border: 0.2rem solid var(--dark-color);
-                cursor: pointer;
+            .edit-options {
+                display: flex;
+                gap: 20px;
+                margin-top: 5px;
     
-                &:hover {
-                    transition: background-color 0.5s ease-in-out;
-                    background-color: var(--light-color);
-                    color: var(--dark-color);
+                button {
+                    width: fit-content;
+                    background-color: var(--dark-color);
+                    color: var(--light-color);
+                    border-radius: 0.5rem;
+                    padding: 0.5rem;
+                    margin-bottom: 0.5rem;
+                    font-size: 1rem;
+                    border: 0.2rem solid var(--dark-color);
+                    cursor: pointer;
+        
+                    &:hover {
+                        transition: background-color 0.5s ease-in-out;
+                        background-color: var(--light-color);
+                        color: var(--dark-color);
+                    }
                 }
             }
         }
+
+        
     }
 }

@@ -19,18 +19,19 @@ const checkErrors = (data) => {
                 errorElement.remove();
             });
         } else {
-            const validationField = document.querySelector(`[id=${field}]`);
+            const inputField = document.querySelector(`.${field}`);
+            const validationContainer = document.querySelector(`[id=${field}]`);
             const validElement = document.createElement('span');
             validElement.classList.add('input-validation');
 
             Object.values(message).forEach(e => {
                 validElement.innerHTML += `<p>-${e}</p>`;
-                validationField.appendChild(validElement);
+                validationContainer.appendChild(validElement);
             });
-           
-
-            validationField.addEventListener('input', () => {
-                validElement.remove();
+            
+          
+            inputField.addEventListener('input', () => { 
+                validElement.innerHTML = ""; 
             });
         }
     }
