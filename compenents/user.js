@@ -11,21 +11,31 @@ const userDisplayData = (user) =>{
                 <td>${user.bio != "" ? user.bio : "Not bio"}</td>
                 <td>${DateFormat(user.joined_at)}</td>
                 <td class='user-options'>
-                    <a class='edit' href='../admin/users/edit_user.html' data-id=${user.user_id}>Edit</a>
-                    <a class='view' href='../admin/users/view_user.html' data-id=${user.user_id}>View</a>
-                    <a class='delete' href='../admin/users/delete_user.html' data-id=${user.user_id}>Delete</a>
+                    <a class='edit' data-id=${user.user_id}>Edit</a>
+                    <a class='view' data-id=${user.user_id}>View</a>
+                    <a class='delete' data-id=${user.user_id}>Delete</a>
                 </td>
             </tr>    
             
         `).join(' ');
 
-        // Add event listeners after the table is populated
+        // Add event listeners to links edit then get the id of each users
         const editLinks = document.querySelectorAll('.edit');
         editLinks.forEach(link => {
             link.addEventListener('click', (e) => {
                 e.preventDefault();
                 const userId = link.dataset.id;
                 window.location.href = `../admin/users/edit_user.html?id=${userId}`;
+            });
+        });
+
+        // Add event listeners to links of view then get the id of each users
+        const viewLinks = document.querySelectorAll('.view');
+        viewLinks.forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                const userId = link.dataset.id;
+                window.location.href = `../admin/users/view_user.html?id=${userId}`;
             });
         });
     }
