@@ -4,6 +4,12 @@
     --secondary-color: #1C1D17;
     --dark-color: #141414;  
     --light-color: #FFFBEF;
+
+    /* Colors for the pie chart */
+    --posts-color: skyblue;
+    --comments-color: green;
+    --friends-color: yellow;
+    --groups-color: lightcoral;
 }
 
 span {
@@ -59,8 +65,6 @@ header {
         border-radius: 100%;
 
     }
-
-    
 
     .userContainer {
         display: flex;

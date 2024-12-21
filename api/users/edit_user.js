@@ -30,61 +30,14 @@ document.addEventListener('DOMContentLoaded', async () => {
         const username = santizeInput(form.usernameEdit.value) ? santizeInput(form.usernameEdit.value) : null;
         const email = santizeInput(form.emailEdit.value) ? santizeInput(form.emailEdit.value) : null;
         formData = {'usernameEdit': username,
-                    'emailEdit': email
-                }; 
-        
-        console.log(username);
+                    'emailEdit': email }; 
 
         editRequest(users_url, userId, formData, token);
     });
 
     // If the user clicks cancel
     document.getElementById('Cancel').addEventListener('click', () => {
-        window.location.href = '../../index.html';
+        window.location.href = '../../navigate/users.html';
     });
 
   });
-
-const getRequest = async (url, value, token) => {
-    try {
-        const response = await fetch(`${url}?id=${value}`, {
-            method: "GET",
-            headers: {
-                'Content-Type': 'application/json',
-                 Authorization: `Bearer ${token}`
-            }
-        });
-
-        if (!response.ok) {
-            throw new Error(`HTTP error! status: ${response.status}`);
-        }
-
-        const data = await response.json();
-        return data; 
-
-    } catch (error) {
-        console.error('Error fetching data:', error);
-        return null; 
-    }
-};
-
-const editRequest = async (url, userId, formData, token) => {
-
-    const response = await fetch(`${url}?id=${userId}`, {
-        method: "PUT",
-        headers: {
-            Authorization: `Bearer ${token}`,
-        },
-        body: JSON.stringify(formData)
-    });
-
-    const data = await response.json();
-    console.log(data);
-    if(data.status < 300){
-        alert(data.message);
-        window.location.href = '../../navigate/users.html';
-    } else {
-        checkErrors(data.error)
-    }
-}
-

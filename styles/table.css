@@ -21,8 +21,6 @@ table {
         }
     }
 
-    
-
     tr {
         .user-options {
             display: flex;
@@ -52,6 +50,7 @@ table {
             .edit, .view, .delete {
                 padding: 0.5rem;
                 border-radius: 10px;
+                cursor: pointer;
             }
         }
     }

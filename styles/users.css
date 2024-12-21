@@ -94,7 +94,179 @@
                 }
             }
         }
+    }
+}
+
+/* Styling from the view_user.html */
+.userInfo-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    .userInfo {
+        display: flex;
+        flex-direction: column;
+        background-color: var(--primary-color);
+        padding: 2rem;
+        border-radius: 20px;
+        box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.5), -4px -4px 4px rgba(0, 0, 0, 0.5);
+        width: 100%;
+        max-width: 900px;
+
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .info {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .info-box {
+            display: flex;
+            gap: 20px;
+            width: 100%;
+            margin: 20px;
+
+            .infoText-container {
+                display: flex;
+                gap: 20px;
+                margin-top: 2rem;
+    
+                .infoText{
+                    display: flex;
+                    flex-direction: column;
+                    gap: 30px;
+                    margin-left: 30px;
+                   
+        
+                    .userData {
+                        font-weight: 500;
+                        color: var(--dark-color);
+                    }
+                }
+            }
+
+            .user-options {
+                display: flex;
+                gap: 30px;
+                margin-top: 30px;
+
+                button {
+                    width: fit-content;
+                    background-color: var(--dark-color);
+                    color: var(--light-color);
+                    border-radius: 0.5rem;
+                    padding: 0.5rem;
+                    margin-bottom: 0.5rem;
+                    font-size: 1rem;
+                    border: 0.2rem solid var(--dark-color);
+                    cursor: pointer;
+        
+                    &:hover {
+                        transition: background-color 0.5s ease-in-out;
+                        background-color: var(--light-color);
+                        color: var(--dark-color);
+                    }
+                }
+            }
+
+            img {
+                height: 10rem;
+                width: 10rem;
+                border-radius: 20px;
+                border: 2px solid var(--dark-color);
+            }
+        }
+    }
+}
+
+.userStats-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    .userStats {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 30px;
+        background-color: var(--light-color);
+        border-radius: 20px;
+        padding: 3rem;
+        box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.5), -4px -4px 4px rgba(0, 0, 0, 0.5);
+        width: 100%;
+        max-width: 900px;
+    
+
+        h1 {
+            text-align: center;
+        }
+
+        .pie-chart-container {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            gap: 5rem;
+
+            .legends {
+                display: flex;
+                flex-direction: column;
+                gap: 10px;
+
+                .legend {
+                    display: flex;
+                    gap: 10px;
+                    
+                    .color {
+                        width: 20px;
+                        height: 20px;
+                        border-radius: 50%;            
+                    }
+
+                    #posts.color {
+                        background-color: var(--posts-color);
+                    }
+
+                    #comments.color {
+                        background-color: var(--comments-color);
+                    }
+
+                    #groups.color {
+                        background-color: var(--groups-color);
+                    }
+
+                    #friends.color {
+                        background-color: var(--friends-color);
+                    }  
+                }
+            }
+
+            .pie-chart {
+                width: 340px;
+                height: 340px;
+                border-radius: 50%;
+                margin-left: 0 auto;
+            }
+        }
 
         
+
+        .stats {
+            display: flex;
+            gap: 20px;
+            margin-top: 2rem;
+
+            .statBox{
+                display: flex;
+                gap: 5px;
+            }
+        }
     }
 }

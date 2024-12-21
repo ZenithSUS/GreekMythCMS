@@ -5,10 +5,11 @@ const groups_url = "http://localhost/GreekMythApi/api/groups.php";
 const comments_url = "http://localhost/GreekMythApi/api/comments.php";
 
 
-// Get User Id and Token
+// Get User Id and Token from local storage
 const token = localStorage.getItem('token');
 const user_id = localStorage.getItem('user_id');
 
+// Object to store the fetched data
 let fetchedData;
 
 // Fetch Admin Data
@@ -48,38 +49,44 @@ const fetchApi = async (url) => {
 // Fetch the Endpoints at the same time
 const fetchAllApis = async () => {
     try {
-      // Deconstruct the data fetched
+      // Deconstruct the data fetched from the API
       const [postData, userData, groupData, commentData] = await Promise.all([
         fetchApi(posts_url),
         fetchApi(users_url),
         fetchApi(groups_url),
         fetchApi(comments_url),
       ]);
-  
+      
+      // Store the fetched data in an object
       fetchedData = {
           posts: postData, 
           users: userData, 
           groups : groupData,
           comments: commentData
         };
-
+    
     } catch (error) {
       console.error("Error fetching data:", error);
     }
   };
   
-
-  fetchAllApis().then(() => {
-
-    const currentURL = current_URL_Location();
-    checkURL(currentURL);
-    
-    console.log("Fetched data:", fetchedData);
-  });
+  async function fetchUserData() {
+    try {
+      await fetchAllApis();
+      
+      if(fetchAllApis()){
+        const currentURL = current_URL_Location();
+        checkURL(currentURL);
+        console.log("Fetched data:", fetchedData);
+      }
+    } catch (error) {
+      console.error("Failed to fetch data:", error);
+    }
+  }
 
   fetchUserData();
 
-
+// Santize Input for HTML to prevent XSS
 const santizeInput = (input) => {
     return input.replace(/&/g, '&amp;')
                 .replace(/>/g, "&gt;")
@@ -88,12 +95,14 @@ const santizeInput = (input) => {
                 .replace(/'/g, '&#39;');
 }
 
+// Get the current URL
 const current_URL_Location = () => {
   const pathname = window.location.pathname;
   const lastPathSegment = pathname.split('/').pop();
   return lastPathSegment;
 }
 
+// Check the current URL and display the data
 const checkURL = (currentURL) => {
   if(currentURL === "index.html"){
     indexDisplayData(fetchedData);
