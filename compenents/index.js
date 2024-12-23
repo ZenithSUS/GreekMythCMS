@@ -17,7 +17,7 @@ const indexDisplayData = (data) => {
         postsContainer.innerHTML = posts.data.slice(0, 5).map(post => `
           <div class="post">
             <div class="post-header">
-              <h3>${elipsisContent(post.title)}</h3>
+              <h3><a href='admin/posts/view_post.html?id=${post.post_id}' class="dashboard-post-title">${elipsisContent(post.title)}</a></h3>
               <h3>${DateFormat(post.created_at)}</h3>
             </div>
           </div>
@@ -28,7 +28,7 @@ const indexDisplayData = (data) => {
       const mostFriendsContainer = document.getElementById('mostfriends-container');
       mostFriendsContainer.innerHTML = friends.slice(0, 10).map((friend, index) => `
           <div class="friends">
-            <h3>Top ${index + 1}: ${friend.username}</h3>
+            <h3>Top ${index + 1}: <a href='admin/users/view_user.html?id=${friend.user_id}'>${friend.username}</a></h3>
             <h3>Friends: ${friend.totalFriends}</h3>
           </div>
         `).join('');

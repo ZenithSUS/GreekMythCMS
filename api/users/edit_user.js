@@ -1,10 +1,14 @@
 document.addEventListener('DOMContentLoaded', async () => {
     const urlParams = new URLSearchParams(window.location.search);
     const userId = urlParams.get('id'); 
+
+    if(!userId) {
+        window.location.href = '../../navigate/users.html';
+    }
   
     const user = await getRequest(users_url, userId, token);
   
-    if (user) {
+    if (user && user.status < 300) {
         console.log(user)
         // Display the input value fetched
         const data  = user.data[0];

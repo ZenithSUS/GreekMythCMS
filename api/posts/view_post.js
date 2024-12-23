@@ -1,6 +1,9 @@
 document.addEventListener('DOMContentLoaded', async () =>{
     const urlParams = new URLSearchParams(window.location.search);
     const post_id = urlParams.get('id');
+    if(!post_id){
+        window.location.href = '../../navigate/posts.html';
+    }
 
     const post = await getRequest(posts_url, post_id, token);
 
@@ -38,7 +41,7 @@ document.addEventListener('DOMContentLoaded', async () =>{
         if(statusButton.id === "enable"){
             // Get the enable button and add an event
             document.querySelector('#enable').addEventListener('click', async () =>{
-                if(confirm('Are you sure do you want do enable this post?')){
+                if(confirm('Are you sure do you want to enable this post?')){
                     const response = await editRequest(posts_url, post_id, { type : "enable" }, token);
                     if(response.status < 300) {
                         alert(response.message);
@@ -51,7 +54,7 @@ document.addEventListener('DOMContentLoaded', async () =>{
         } else {
             // Get the disable button and add an event
             document.querySelector('#disable').addEventListener('click', async () =>{
-                if(confirm('Are you sure do you want do disable this post?')){
+                if(confirm('Are you sure do you want to disable this post?')){
                     const response = await editRequest(posts_url, post_id, { type : "disable" }, token);
                     if(response.status < 300) {
                         alert(response.message);

@@ -3,6 +3,11 @@ document.addEventListener('DOMContentLoaded', async () => {
     // Get the user ID from the URL
     const urlParams = new URLSearchParams(window.location.search);
     const user_id = urlParams.get('id');
+
+    if(!user_id) {
+        window.location.href = '../../navigate/users.html';
+    }
+
     // Fetch user data from the API
     const user = await getRequest(users_url, user_id, token);
 
@@ -34,7 +39,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     // Get the delete Button and add an event
     document.getElementById('delete-user').addEventListener('click', async () => {
-        if(confirm('Are you sure do you want do delete this user?')){
+        if(confirm('Are you sure do you want to delete this user?')){
             const response = await deleteRequest(users_url, user_id, token);
             if(response.status < 300) {
                 console.log(response)
