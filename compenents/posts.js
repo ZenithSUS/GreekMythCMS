@@ -9,10 +9,10 @@ const postDisplayData = (posts) => {
                 <td class='post-content'>${elipsisContent(post.content)}</td>
                 <td>${DateFormat(post.created_at)}</td>
                 <td>${post.name != null ? post.name : "N/A"}</td>
-                <td>${post.status !== 0 ? "Permited" : "Disabled"}</td>
+                <td>${post.status === 1 ? "Permited" : "Disabled"}</td>
                 <td class='user-options'>
                     <a class='view' href='../admin/posts/view_post.html?id=${post.post_id}'>View</a>
-                    <a class='${post.status == 1 ? "disable" : "enable"}' data-id=${post.post_id}>${post.status === 1 ? "Disable" : "Enable"}</a>
+                    <a class='${post.status === 1 ? "disable" : "enable"}' data-id=${post.post_id}>${post.status === 1 ? "Disable" : "Enable"}</a>
                     <a class='delete' data-id=${post.post_id}>Delete</a>
                 </td>
             </tr>    
@@ -23,7 +23,7 @@ const postDisplayData = (posts) => {
         const disableButton = document.querySelectorAll('.disable');
         disableButton.forEach(button => {
             button.addEventListener('click', async() => {
-                if(confirm('Are you sure do you want do disable this post?')){
+                if(confirm('Are you sure do you want to disable this post?')){
                     const response = await editRequest(posts_url, button.dataset.id, {type: "disable"}, token);
                     if(response.status < 300) {
                         alert(response.message);

@@ -49,7 +49,7 @@
     .recentPosts {
         background-color: var(--light-color);
         width: 100%;
-        max-width: 400px;
+        max-width: 420px;
         padding: 2rem;
         box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.5);
         border-radius: 20px;
@@ -75,6 +75,15 @@
                 .post-header {
                     display: flex;
                     justify-content: space-between;
+
+                    a {
+                        text-decoration: none;
+                        color: var(--dark-color);
+
+                        &:hover {
+                            text-decoration: underline;
+                        }
+                    }
                 }
             }
         }
@@ -109,8 +118,16 @@
                padding: 2rem;
                box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.5);
                border-radius: 20px;
+
+               a {
+                    text-decoration: none;
+                    color: var(--dark-color);
+
+                    &:hover {
+                        color: var(--hover-color);
+                    }
+                }
             }
-        }
-        
+        } 
     }
 }
