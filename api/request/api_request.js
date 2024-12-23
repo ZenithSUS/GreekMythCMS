@@ -19,26 +19,29 @@ const getRequest = async (url, value, token) => {
 };
 
 // Put or Update Request
-const editRequest = async (url, userId, formData, token) => {
+const editRequest = async (url, userId, formData = null, token) => {
     try {
-        const response = await fetch(`${url}?id=${userId}`, {
+        const options = {
             method: "PUT",
             headers: {
                 Authorization: `Bearer ${token}`,
-            },
-            body: JSON.stringify(formData)
-        });
+            }
+        };
+
+        if(formData){
+            options['body'] = JSON.stringify(formData);
+        }
+
+        const response = await fetch(`${url}?id=${userId}`, options);
         
         const data = await response.json();
         console.log(data);
-        if(data.status < 300){
-            alert(data.message);
-            window.location.href = '../../navigate/users.html';
-        } else {
-            checkErrors(data.error)
+        if(data){
+            return data;
         }
     } catch (error) {
         console.error('Error fetching data:', error);
+        return null; 
     }
 }
 
@@ -57,6 +60,20 @@ const postRequest = async (url, token) => {
 }
 
 // Delete Request 
-const deleteRequest = (url, userId, token) => {
+const deleteRequest = async (url, userId, token) => {
+    try {
+        const response = await fetch(`${url}?id=${userId}`, {
+            method: "DELETE",
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        });
     
+        const data = await response.json();
+        if(data){
+            return data;
+        }
+    } catch (error) {
+        console.error('Error Deleting data:', error);
+    }
 }

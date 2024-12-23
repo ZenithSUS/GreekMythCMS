@@ -185,6 +185,7 @@
     }
 }
 
+/* Styling for view_user.html in User Statistics Info */
 .userStats-container {
     display: flex;
     flex-direction: column;

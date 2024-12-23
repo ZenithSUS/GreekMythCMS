@@ -47,7 +47,15 @@ table {
                 background-color: red;
             }
 
-            .edit, .view, .delete {
+            .enable {
+                background-color: black;
+            }
+
+            .disable {
+                background-color: gray;
+            }
+
+            .edit, .view, .delete, .enable, .disable {
                 padding: 0.5rem;
                 border-radius: 10px;
                 cursor: pointer;

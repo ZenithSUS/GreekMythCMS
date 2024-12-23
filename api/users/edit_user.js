@@ -7,12 +7,13 @@ document.addEventListener('DOMContentLoaded', async () => {
     if (user) {
         console.log(user)
         // Display the input value fetched
-        document.getElementById('usernameEdit').value = user.data[0].username;
-        document.getElementById('emailEdit').value = user.data[0].email;
-        document.getElementById('userImage').src = user.data[0].profile_pic;
+        const data  = user.data[0];
+        document.getElementById('usernameEdit').value = data.username;
+        document.getElementById('emailEdit').value = data.email;
+        document.getElementById('userImage').src = data.profile_pic;
         // Display user info
-        document.getElementById('usernameDisplay').innerHTML = user.data[0].username;
-        document.getElementById('emailDisplay').innerHTML = user.data[0].email;
+        document.getElementById('usernameDisplay').innerHTML = data.username;
+        document.getElementById('emailDisplay').innerHTML = data.email;
     } else {
         console.error("Failed to fetch data", user.message);
     }
@@ -25,14 +26,20 @@ document.addEventListener('DOMContentLoaded', async () => {
         });
     
     // If the user clicks change
-    changeButton.addEventListener('click', () => { 
+    changeButton.addEventListener('click', async () => { 
         let formData = {}
         const username = santizeInput(form.usernameEdit.value) ? santizeInput(form.usernameEdit.value) : null;
         const email = santizeInput(form.emailEdit.value) ? santizeInput(form.emailEdit.value) : null;
         formData = {'usernameEdit': username,
                     'emailEdit': email }; 
 
-        editRequest(users_url, userId, formData, token);
+        const response  = await editRequest(users_url, userId, formData, token);
+        if(response.status < 300){
+            alert(response.message);
+            window.location.href = '../../navigate/users.html';
+        } else {
+            checkErrors(response.error);
+        }
     });
 
     // If the user clicks cancel

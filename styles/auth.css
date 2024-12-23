@@ -71,6 +71,14 @@
             margin: 10px 0 10px 0;
             text-align: start;
             width: 100%;
+
+            a {
+                color: blue;
+
+                &:hover {
+                    color: skyblue;
+                }
+            }
         }
 
         button {

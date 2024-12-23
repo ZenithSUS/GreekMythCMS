@@ -14,7 +14,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         document.getElementById('userImage').src = data.profile_pic;
         document.getElementById('usernameDisplay').innerHTML = data.username;
         document.getElementById('emailDisplay').innerHTML = data.email;
-        document.getElementById('bioDisplay').innerHTML = data.bio !== "" ? data.bio : "No bio";
+        document.getElementById('bioDisplay').innerHTML = data.bio !== "" && data.bio != null ? data.bio : "No bio";
         document.getElementById('joinedDisplay').innerHTML = DateFormat(data.joined_at);
         document.getElementById('totalPosts').innerHTML = data.totalPosts;
         document.getElementById('totalComments').innerHTML = data.totalComments;
@@ -33,13 +33,15 @@ document.addEventListener('DOMContentLoaded', async () => {
     });
 
     // Get the delete Button and add an event
-    document.getElementById('delete-user').addEventListener('click', async (e) => {
-        e.preventDefault();
+    document.getElementById('delete-user').addEventListener('click', async () => {
         if(confirm('Are you sure do you want do delete this user?')){
-            await deleteRequest(users_url, user_id, token);
-            if(deleteRequest(users_url, user_id, token)) {
-                alert('Deleted Successfully!');
+            const response = await deleteRequest(users_url, user_id, token);
+            if(response.status < 300) {
+                console.log(response)
+                alert(response.message);
                 window.location.href = '../../navigate/users.html';
+            } else {
+                console.error('Error deleting data:', response.message)
             }
         }
     })
