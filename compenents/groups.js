@@ -6,12 +6,12 @@ const groupDisplayData = (groups) => {
            <tr>
                 <td>${group.name}</td>
                 <td>${elipsisContent(group.description)}</td>
-                <td>${group.creator === "Default" ? group.creator : group.username}</td>
+                <td>${group.creator === "Default" ? group.creator = "Admin" : group.username}</td>
                 <td><img src="${group.image_url}" alt="No Image"></td>
                 <td class='user-options'>
-                    <a class='edit' href='../admin/posts/edit_post'>Edit</a>
-                    <a class='view' href='../admin/posts/view_post'>View</a>
-                    <a class='delete' href='../admin/posts/delete_post'>Delete</a>
+                    <a class='view' href='../admin/groups/view_group.html?id=${group.greek_id}'>View</a>
+                    <a class='disable' data-id=${group.greek_id}>Disable</a>
+                    <a class='delete' data-id=${group.greek_id}>Delete</a>
                 </td>
             </tr>    
             

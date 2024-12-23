@@ -13,7 +13,7 @@ const user_id = localStorage.getItem('user_id');
 let fetchedData;
 
 // Fetch Admin Data
-async function fetchUserData() {
+async function fetchAdminData() {
     try {
       const response = await fetch('http://localhost/GreekMythApi/api/users.php?user_id=' + user_id, {
           method: "GET",
@@ -70,10 +70,10 @@ const fetchAllApis = async () => {
     }
   };
   
-  async function fetchUserData() {
+  async function fetchData() {
     try {
       await fetchAllApis();
-      
+
       if(fetchAllApis()){
         const currentURL = current_URL_Location();
         checkURL(currentURL);
@@ -84,7 +84,8 @@ const fetchAllApis = async () => {
     }
   }
 
-  fetchUserData();
+  fetchData();
+  fetchAdminData();
 
 // Santize Input for HTML to prevent XSS
 const santizeInput = (input) => {

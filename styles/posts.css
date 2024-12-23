@@ -6,3 +6,95 @@
     font-size: 36px;
     box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.5), -4px -4px 4px rgba(0, 0, 0, 0.5);
 }
+
+.post-container {
+    display: flex;
+    justify-content: start;
+    width: 100%;
+    gap: 2rem;
+    
+
+    .post {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        background-color: var(--light-color);
+        padding: 2rem;
+        border-radius: 20px;
+        gap: 1rem;
+        box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.5), -4px -4px 4px rgba(0, 0, 0, 0.5);
+        border: solid 3px var(--dark-color);
+        height: fit-content;
+
+        .post-header {
+            display: flex;
+            justify-content: space-between;
+
+            a {
+                text-decoration: wavy;
+                color: var(--link-color);
+
+                &:hover {
+                    color: var(--hover-color);
+                }
+            }
+        }
+
+        .post-body {
+            width: 100%;
+            background-color: var(--primary-color);
+            padding: 1rem;
+            border-radius: 20px;
+            border: solid 3px var(--dark-color);
+        }
+
+        .post-footer {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+        }
+    }
+
+    .post-options {
+        display: flex;
+        flex-direction: column;
+        background-color: var(--light-color);
+        padding: 2rem;
+        border-radius: 20px;
+        box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.5), -4px -4px 4px rgba(0, 0, 0, 0.5);
+        gap: 1rem;
+
+        h1 {
+            text-align: center;
+        }
+
+        .post-buttons {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            
+    
+            button {
+                width: 100%;
+                max-width: 300px;
+                background-color: var(--dark-color);
+                color: var(--light-color);
+                border-radius: 0.5rem;
+                padding: 0.5rem;
+                font-size: 1rem;
+                border: 0.2rem solid var(--dark-color);
+                cursor: pointer;
+    
+                &:hover {
+                    transition: background-color 0.5s ease-in-out;
+                    background-color: var(--light-color);
+                    color: var(--dark-color);
+                }
+            }
+        }
+    }
+
+    
+}

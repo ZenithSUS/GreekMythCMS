@@ -10,9 +10,9 @@ const commentDisplayData = (comments) => {
                 <td>${comment.likes}</td>
                 <td>${comment.dislikes}</td>
                 <td class='user-options'>
-                    <a class='edit' href='../admin/posts/edit_post'>Edit</a>
-                    <a class='view' href='../admin/posts/view_post'>View</a>
-                    <a class='delete' href='../admin/posts/delete_post'>Delete</a>
+                    <a class='edit' href='../admin/comments/disable_comment.html'>Disable</a>
+                    <a class='view' href='../admin/comments/view_comment'>View</a>
+                    <a class='delete'>Delete</a>
                 </td>
             </tr>    
             
