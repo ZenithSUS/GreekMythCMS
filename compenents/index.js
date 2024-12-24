@@ -50,7 +50,9 @@ const indexDisplayData = (data) => {
       return elipsisText;
   }
 
-    overallData(data);
-    recentPosts(data.posts);
-    mostFriends(sortTotalFriends(data.users.data));
+    if(data){
+      overallData(data);
+      recentPosts(data.posts);
+      mostFriends(sortTotalFriends(data.users.data));
+    }
 }

@@ -53,12 +53,15 @@
             <div class="post-options">
                 <h1>Options</h1>
                 <div class="post-buttons">
-                    <button id="statusButton" class="button">Disable</button>
+                    <button id="statusButton" class="button"><h4>...</h4></button>
                     <button id="delete">Delete</button>
                     <button id="back">Go back</button>
                 </div>   
             </div>
         </div>
     </main>
+
+    <script> if(!token)  window.location.href = '../../auth/login.html'; </script>
+    <script type="text/javascript" src="../../api/auth/logout.js"></script>
 </body>
 </html>

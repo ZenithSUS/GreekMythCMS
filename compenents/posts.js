@@ -1,8 +1,8 @@
-const postDisplayData = (posts) => {
+const postDisplayData = (posts, page = currentPage) => {
 
     const postTableData = (posts) => {
         const tableBody = document.querySelector('tbody');
-        tableBody.innerHTML = posts.slice(0, 10).map(post => `
+        tableBody.innerHTML = posts.map(post => `
            <tr>
                 <td>${post.username}</td>
                 <td>${elipsisContent(post.title)}</td>
@@ -80,10 +80,48 @@ const postDisplayData = (posts) => {
 
     const DateFormat = (date) => {
         const newDate = new Date(date);
-        dateFormat = newDate.toLocaleString('default', { month: 'short' }) + ' ' + newDate.getDate() + ' ' + newDate.getFullYear();
+        const dateFormat = newDate.toLocaleString('default', { month: 'short' }) + ' ' + newDate.getDate() + ' ' + newDate.getFullYear();
         return dateFormat;
     }
 
-    const postData = sortPosts(posts);
-    postTableData(postData);
+    if(posts && posts.status < 300){
+        const postData = sortPosts(posts);
+        postTableData(postData);
+
+        const paginationContainer = document.querySelector('.pagination-posts')
+        paginationContainer.innerHTML = '';
+
+        const prevButton = document.createElement('button');
+        prevButton.textContent = 'Previous';
+        prevButton.onclick = () => {
+            if(currentPage > 1){
+                currentPage--;
+                fetchData(currentPage);
+            }
+        }
+
+        if (page === 1) {
+            prevButton.disabled = true;
+        }
+        paginationContainer.appendChild(prevButton);
+
+        const nextButton = document.createElement('button');
+        nextButton.textContent = 'Next';
+        nextButton.onclick = () => {
+            if(currentPage < totalPages){
+                currentPage++;
+                fetchData(currentPage);
+            }
+        }
+        
+
+        const totalPages = posts.totalPages;
+
+        if(currentPage === totalPages){
+            nextButton.disabled = true;
+        }
+
+        paginationContainer.appendChild(nextButton);
+    }
+    
 }

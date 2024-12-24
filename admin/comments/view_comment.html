@@ -4,11 +4,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="../../src/images/logo_transparent.png">
     <link rel="stylesheet" href="../../global.css">
-    <link rel="stylesheet" href="../../styles/users.css">
+    <link rel="stylesheet" href="../../styles/comments.css">
     <title>Comment Information</title>
     <script type="text/javascript" src="../../api/greekmythApi.js"></script>
     <script type="text/javascript" src="../../api/request/api_request.js"></script>
-    <script type="text/javascript" src="../../api/groups/view_group.js"></script>
+    <script type="text/javascript" src="../../api/comments/view_comment.js"></script>
 </head>
 <body>
     <header>
@@ -37,5 +37,32 @@
             <a href="../settings/delete_account">Delete Account</a>
             <a href="../settings/preferences">Preferences</a>
     </nav>
+
+    <main>
+        <h1 class="title">Comment Information</h1>
+
+        <div class="comment-container">
+            <div class="comment">
+                <div class="comment-header" id="comment-header">
+                    <h3>Loading...</h3>
+                </div>
+                <div class="comment-body" id="comment-body"></div>
+                <div class="comment-footer" id="comment-footer"></div>
+            </div>
+
+            <div class="comment-options">
+                <h1>Options</h1>
+                <div class="comment-buttons">
+                    <button id="statusButton" class="button"><h4>...</h4></button>
+                    <button id="delete">Delete</button>
+                    <button id="back">Go back</button>
+                </div>   
+            </div>
+        </div>
+
+    </main>
+
+    <script> if(!token)  window.location.href = '../../auth/login.html'; </script>
+    <script type="text/javascript" src="../../api/auth/logout.js"></script>
 </body>
 </html>

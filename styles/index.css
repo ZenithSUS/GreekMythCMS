@@ -114,10 +114,10 @@
 
             .friends {
                 position: relative;
-               background-color: var(--primary-color);
-               padding: 2rem;
-               box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.5);
-               border-radius: 20px;
+                background-color: var(--primary-color);
+                padding: 2rem;
+                box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.5), -4px -4px 4px rgba(0, 0, 0, 0.5);
+                border-radius: 20px;
 
                a {
                     text-decoration: none;

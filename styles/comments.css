@@ -6,3 +6,114 @@
     font-size: 36px;
     box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.5), -4px -4px 4px rgba(0, 0, 0, 0.5);
 }
+
+.comment-container {
+    display: flex;
+    width: 100%;
+    gap: 20px;
+
+    .comment {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        width: 100%;
+        background-color: var(--light-color);
+        padding: 2rem;
+        border-radius: 20px;
+        border: solid 2px var(--dark-color);
+        height: fit-content;
+
+        .comment-header {
+            display: flex;
+            justify-content: space-between;
+            font-size: 26px;
+        }
+
+        .comment-body {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+
+            .comment-contents {
+                width: 100%;
+                background-color: var(--primary-color);
+                padding: 1rem;
+                border-radius: 20px;
+                border: solid 3px var(--dark-color);
+            }
+        }
+
+        .comment-footer {
+            display: flex;
+            justify-content: space-between;
+        }
+    }
+
+    .comment-options {
+        display: flex;
+        flex-direction: column;
+        background-color: var(--light-color);
+        padding: 2rem;
+        border-radius: 20px;
+        box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.5), -4px -4px 4px rgba(0, 0, 0, 0.5);
+        gap: 1rem;
+
+        h1 {
+            text-align: center;
+        }
+
+        .comment-buttons {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            
+    
+            button {
+                width: 100%;
+                max-width: 300px;
+                background-color: var(--dark-color);
+                color: var(--light-color);
+                border-radius: 0.5rem;
+                padding: 0.5rem;
+                font-size: 1rem;
+                border: 0.2rem solid var(--dark-color);
+                cursor: pointer;
+    
+                &:hover {
+                    transition: background-color 0.5s ease-in-out;
+                    background-color: var(--light-color);
+                    color: var(--dark-color);
+                }
+            }
+        }
+    }
+
+}
+
+.pagination-comments {
+    display: flex;
+    gap: 30px;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    
+    button {
+        width: fit-content;
+        background-color: var(--dark-color);
+        color: var(--light-color);
+        border-radius: 0.5rem;
+        padding: 0.5rem;
+        margin-bottom: 0.5rem;
+        font-size: 1rem;
+        border: 0.2rem solid var(--dark-color);
+        cursor: pointer;
+
+        &:hover {
+            transition: background-color 0.5s ease-in-out;
+            background-color: var(--light-color);
+            color: var(--dark-color);
+        }
+    }
+}
