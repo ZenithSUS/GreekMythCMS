@@ -12,6 +12,9 @@
     --comments-color: green;
     --friends-color: yellow;
     --groups-color: lightcoral;
+
+    /* Fonts for the system */
+    --font-style1: 'Constatine', 'serif';
 }
 
 span {
@@ -26,7 +29,7 @@ span {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Constatine', 'serif';
+    font-family: var(--font-style1);
 }
 
 /* Styling for Body */

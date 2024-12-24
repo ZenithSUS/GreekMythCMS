@@ -1,8 +1,8 @@
-const groupDisplayData = (groups) => {
+const groupDisplayData = (groups, page = currentPage) => {
 
     const groupsTableData = (groups) => {
         const tableBody = document.querySelector('tbody');
-        tableBody.innerHTML = groups.slice(0, 10).map(group => `
+        tableBody.innerHTML = groups.map(group => `
            <tr>
                 <td>${group.name}</td>
                 <td>${elipsisContent(group.description)}</td>
@@ -74,6 +74,44 @@ const groupDisplayData = (groups) => {
         return groups.data.sort((a,b) => a.name.localeCompare(b.name));
     }
 
-    const groupdata = sortGroups(groups)
-    groupsTableData(groupdata)
+    if(groups && groups.status < 300){
+        const groupdata = sortGroups(groups)
+        groupsTableData(groupdata)
+
+        // Add pagination controls 
+        const paginationContainer = document.querySelector('.pagination-groups'); 
+        paginationContainer.innerHTML = ''; // Clear previous pagination
+
+        // Create "Previous" button
+        const prevButton = document.createElement('button');
+        prevButton.textContent = 'Previous';
+        prevButton.onclick = () => { 
+            if (currentPage > 1) {
+                currentPage--;
+                fetchData(currentPage); 
+            }
+        };
+        if (page === 1) {
+            prevButton.disabled = true;
+        }
+        paginationContainer.appendChild(prevButton);
+
+    
+        const nextButton = document.createElement('button');
+        nextButton.textContent = 'Next';
+        nextButton.onclick = () => { 
+            if (currentPage < totalPages) {
+                currentPage++;
+                fetchData(currentPage); 
+            }
+        };
+
+        const totalPages = groups.totalPages; // Get total pages from API response
+
+        if (currentPage === totalPages) { 
+            nextButton.disabled = true;
+        }
+        paginationContainer.appendChild(nextButton);
+    }
+   
 }

@@ -1,4 +1,4 @@
-const userDisplayData = (user) =>{
+const userDisplayData = (user, page = currentPage) =>{
 
     const userTableData = (users) => {
         const tableBody = document.querySelector('tbody');
@@ -39,9 +39,45 @@ const userDisplayData = (user) =>{
 
     const DateFormat = (date) => {
         const newDate = new Date(date);
-        dateFormat = newDate.toLocaleString('default', { month: 'short' }) + ' ' + newDate.getDate() + ' '  + newDate.getFullYear();
+        const dateFormat = newDate.toLocaleString('default', { month: 'short' }) + ' ' + newDate.getDate() + ' '  + newDate.getFullYear();
         return dateFormat;
     }
 
-    userTableData(user)
+    if(user && user.status < 300){
+        userTableData(user);
+
+        // Add pagination controls 
+        const paginationContainer = document.querySelector('.pagination-users'); 
+        paginationContainer.innerHTML = ''; // Clear previous pagination
+
+        // Create "Previous" button
+        const prevButton = document.createElement('button');
+        prevButton.textContent = 'Previous';
+        prevButton.onclick = () => { 
+            if(currentPage > 1){
+                currentPage++;
+                fetchData(currentPage); 
+            }
+        };
+
+        if (page === 1) {
+            prevButton.disabled = true;
+        }
+        paginationContainer.appendChild(prevButton);
+
+    
+        const nextButton = document.createElement('button');
+        nextButton.textContent = 'Next';
+        nextButton.onclick = () => { 
+            fetchData(page + 1); 
+        };
+        const totalPages = user.totalPages; // Get total pages from API response
+
+
+        if (currentPage === totalPages) { 
+            nextButton.disabled = true;
+        }
+        paginationContainer.appendChild(nextButton);
+    }
+    
 }
