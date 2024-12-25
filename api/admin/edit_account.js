@@ -1,20 +1,13 @@
 document.addEventListener('DOMContentLoaded', async () => {
-    const urlParams = new URLSearchParams(window.location.search);
-    const userId = urlParams.get('id'); 
-
-    if(!userId) {
-        window.location.href = '../../navigate/users.html';
-    }
-  
-    const user = await getRequest(users_url, userId, token);
-  
-    if (user && user.status < 300) {
-        console.log(user)
-        // Display the input value fetched
-        const data  = user.data[0];
+    const admin = await fetchAdminData();
+    if(admin) {
+        console.log(admin)
+         // Display the input value fetched
+        const data = admin.data[0];
+      
         document.getElementById('usernameEdit').value = data.username;
         document.getElementById('emailEdit').value = data.email;
-        document.getElementById('userImage').src = data.profile_pic;
+        document.getElementById('userImage').src = data.image_src;
         // Display user info
         document.getElementById('usernameDisplay').innerHTML = data.username;
         document.getElementById('emailDisplay').innerHTML = data.email;
@@ -34,17 +27,17 @@ document.addEventListener('DOMContentLoaded', async () => {
         let formData = {}
         const username = santizeInput(form.usernameEdit.value) ? santizeInput(form.usernameEdit.value) : null;
         const email = santizeInput(form.emailEdit.value) ? santizeInput(form.emailEdit.value) : null;
-        const type = "user";
+        const type = "admin";
         formData = {
             'usernameEdit': username,
             'emailEdit': email,
             'type': type
         }; 
 
-        const response  = await editRequest(users_url, userId, formData, token);
+        const response  = await editRequest(users_url, user_id, formData, token);
         if(response.status < 300){
             alert(response.message);
-            window.location.href = '../../navigate/users.html';
+            window.location.href = '../../index.html';
         } else {
             checkErrors(response.error);
         }
@@ -52,7 +45,6 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     // If the user clicks cancel
     document.getElementById('Cancel').addEventListener('click', () => {
-        window.location.href = '../../navigate/users.html';
+        window.location.href = '../../index.html';
     });
-
-  });
+});

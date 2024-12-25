@@ -122,6 +122,9 @@ const postDisplayData = (posts, page = currentPage) => {
         }
 
         paginationContainer.appendChild(nextButton);
+
+        document.getElementById('pagination-number').innerHTML = `
+            <h3>${currentPage} of ${totalPages}</h3>
+        `;
     }
-    
 }
