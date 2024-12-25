@@ -121,6 +121,10 @@ const commentDisplayData = (comments, page = currentPage) => {
             nextButton.disabled = true;
         }
         paginationContainer.appendChild(nextButton);
+
+        document.getElementById('pagination-number').innerHTML = `
+            <h3>${currentPage} of ${totalPages}</h3>
+        `;
     }
     
 }

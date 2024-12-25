@@ -25,10 +25,10 @@
         box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.5), -4px -4px 4px rgba(0, 0, 0, 0.5);
 
         .gridBox {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 20px;
+            display: flex;
+            justify-content: space-evenly;
             margin-top: 2rem;
+            width: 100%;
 
             .userInfo {
                 display: flex;
@@ -185,31 +185,50 @@
     }
 }
 
-.pagination-users {
+.pagination-container {
     display: flex;
-    gap: 30px;
-    width: 100%;
     align-items: center;
     justify-content: center;
-    
-    button {
-        width: fit-content;
-        background-color: var(--dark-color);
-        color: var(--light-color);
-        border-radius: 0.5rem;
-        padding: 0.5rem;
-        margin-bottom: 0.5rem;
-        font-size: 1rem;
-        border: 0.2rem solid var(--dark-color);
-        cursor: pointer;
+    flex-direction: column;
+    width: 100%;
 
-        &:hover {
-            transition: background-color 0.5s ease-in-out;
-            background-color: var(--light-color);
-            color: var(--dark-color);
+    .pagination {
+        display: flex;
+        align-items: center;
+        flex-direction: column-reverse;
+        width: fit-content;
+        gap: 10px;
+        background-color: var(--light-color);
+        padding: 1rem;
+        border-radius: 20px;
+    
+        .pagination-users {
+            display: flex;
+            gap: 30px;
+            align-items: center;
+            
+            button {
+                width: fit-content;
+                background-color: var(--dark-color);
+                color: var(--light-color);
+                border-radius: 0.5rem;
+                padding: 0.5rem;
+                font-size: 1rem;
+                border: 0.2rem solid var(--dark-color);
+                cursor: pointer;
+        
+                &:hover {
+                    transition: background-color 0.5s ease-in-out;
+                    background-color: var(--light-color);
+                    color: var(--dark-color);
+                }
+            }
         }
-    }
+    
+    }    
 }
+
+
 
 /* Styling for view_user.html in User Statistics Info */
 .userStats-container {
