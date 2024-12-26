@@ -2,6 +2,8 @@ const userDisplayData = (user, page = currentPage) =>{
 
     const userTableData = (users) => {
         const tableBody = document.querySelector('tbody');
+        const type = "user";
+
         tableBody.innerHTML = users.data.map(user => `
             <tr>
                 <td>${user.username}</td>
@@ -24,7 +26,7 @@ const userDisplayData = (user, page = currentPage) =>{
         deleteButton.forEach(button => {
             button.addEventListener('click', async () => {
                 if(confirm('Are you sure do you want do delete this user?')){
-                    const response = await deleteRequest(users_url, button.dataset.id, token);
+                    const response = await deleteRequest(users_url, button.dataset.id, type, token);
                     if(response.status < 300) {
                         alert(response.message);
                         window.location.reload();
@@ -80,7 +82,7 @@ const userDisplayData = (user, page = currentPage) =>{
         paginationContainer.appendChild(nextButton);
 
         document.getElementById('pagination-number').innerHTML = `
-            <h3>${currentPage} of ${totalPages}</h3>
+            <h3>Page ${currentPage} of ${totalPages}</h3>
         `;
     }
     

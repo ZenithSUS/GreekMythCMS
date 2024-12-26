@@ -12,6 +12,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         console.log(group);
         const data = group.data[0];
         const formData = new FormData();
+        const type = "delete";
         const groupInfo = document.getElementById('group-info');
         //Display Group Info
         document.getElementById('image').src = data.image_url;
@@ -67,7 +68,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
         document.getElementById('delete').addEventListener('click', async() => {
             if(confirm('Are you sure do you want to delete this group?')){
-                const response = await deleteRequest(groups_url, group_id, token);
+                const response = await deleteRequest(groups_url, group_id, type, token);
                 if(response.status < 300) {
                     alert(response.message);
                     window.location.href = '../../navigate/groups.html';

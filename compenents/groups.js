@@ -3,6 +3,8 @@ const groupDisplayData = (groups, page = currentPage) => {
     const groupsTableData = (groups) => {
         const tableBody = document.querySelector('tbody');
         const formData = new FormData();
+        const type = "user";
+
         tableBody.innerHTML = groups.map(group => `
            <tr>
                 <td>${group.name}</td>
@@ -55,7 +57,7 @@ const groupDisplayData = (groups, page = currentPage) => {
         deleteButton.forEach(button => {
             button.addEventListener('click', async () => {
                 if(confirm('Are you sure do you want to delete this group?')) {
-                    const response = await deleteRequest(groups_url, button.dataset.id, token);
+                    const response = await deleteRequest(groups_url, button.dataset.id, type, token);
                     if(response.status < 300){
                         alert(response.message);
                         window.location.reload();
@@ -117,7 +119,7 @@ const groupDisplayData = (groups, page = currentPage) => {
         paginationContainer.appendChild(nextButton);
 
         document.getElementById('pagination-number').innerHTML = `
-            <h3>${currentPage} of ${totalPages}</h3>
+            <h3>Page ${currentPage} of ${totalPages}</h3>
         `;
     }
    
