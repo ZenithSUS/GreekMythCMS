@@ -22,15 +22,14 @@ document.addEventListener('DOMContentLoaded', async () => {
     
     // If the user clicks change
     changeButton.addEventListener('click', async () => { 
-        let formData = {}
-        const newpassword = santizeInput(form.newpassword.value) ? santizeInput(form.newpassword.value) : null;
-        const newconfirmpassword = santizeInput(form.newconfirmpassword.value) ? santizeInput(form.newconfirmpassword.value) : null;
+        const newpassword = santizeInput(form.newpassword.value) ? santizeInput(form.newpassword.value) : "";
+        const newconfirmpassword = santizeInput(form.newconfirmpassword.value) ? santizeInput(form.newconfirmpassword.value) : "";
         const type = "adminPass";
-        formData = {
-            'newpassword': newpassword,
-            'newconfirmpassword': newconfirmpassword,
-            'type': type
-        }; 
+
+        const formData = new FormData();
+        formData.append('newpassword', newpassword);
+        formData.append('newconfirmpassword', newconfirmpassword)
+        formData.append('type', type);    
         
         const response  = await editRequest(users_url, user_id, formData, token);
         if(response.status < 300){

@@ -2,6 +2,7 @@ const postDisplayData = (posts, page = currentPage) => {
 
     const postTableData = (posts) => {
         const tableBody = document.querySelector('tbody');
+        const formData = new FormData();
         tableBody.innerHTML = posts.map(post => `
            <tr>
                 <td>${post.username}</td>
@@ -24,7 +25,8 @@ const postDisplayData = (posts, page = currentPage) => {
         disableButton.forEach(button => {
             button.addEventListener('click', async() => {
                 if(confirm('Are you sure do you want to disable this post?')){
-                    const response = await editRequest(posts_url, button.dataset.id, {type: "disable"}, token);
+                    formData.append('type', 'disable');
+                    const response = await editRequest(posts_url, button.dataset.id, formData, token);
                     if(response.status < 300) {
                         alert(response.message);
                         window.location.reload();
@@ -40,7 +42,8 @@ const postDisplayData = (posts, page = currentPage) => {
          enableButton.forEach(button => {
              button.addEventListener('click', async() => {
                  if(confirm('Are you sure do you want do enable this post?')){
-                     const response = await editRequest(posts_url, button.dataset.id, {type: "enable"}, token);
+                    formData.append('type', 'enable');
+                     const response = await editRequest(posts_url, button.dataset.id, formData, token);
                      if(response.status < 300) {
                          alert(response.message);
                          window.location.reload();

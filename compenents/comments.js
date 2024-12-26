@@ -2,6 +2,7 @@ const commentDisplayData = (comments, page = currentPage) => {
 
     const commentsTableData = (comments) => {
         const tableBody = document.querySelector('tbody');
+        const formData = new FormData();
         tableBody.innerHTML = comments.map(comment => `
          <tr>
                 <td>${comment.username}</td>
@@ -24,7 +25,8 @@ const commentDisplayData = (comments, page = currentPage) => {
         disableButton.forEach(button => {
             button.addEventListener('click', async() => {
                 if(confirm('Are you sure do you want to disable this comment?')){
-                    const response = await editRequest(comments_url, button.dataset.id, {type: "disable"}, token);
+                    formData.append('type', 'disable');
+                    const response = await editRequest(comments_url, button.dataset.id, formData, token);
                     if(response && response.status < 300) {
                         alert(response.message);
                         window.location.reload();
@@ -35,12 +37,13 @@ const commentDisplayData = (comments, page = currentPage) => {
             });
         });
 
-         // Get the disable button and add an event
+         // Get the enable button and add an event
          const enableButton = document.querySelectorAll('.enable');
          enableButton.forEach(button => {
              button.addEventListener('click', async() => {
                  if(confirm('Are you sure do you want do enable this comment?')){
-                     const response = await editRequest(comments_url, button.dataset.id, {type: "enable"}, token);
+                    formData.append('type', 'enable');
+                     const response = await editRequest(comments_url, button.dataset.id, formData, token);
                      if(response.status < 300) {
                          alert(response.message);
                          window.location.reload();

@@ -5,13 +5,14 @@ document.addEventListener('DOMContentLoaded', async () => {
     const comment = await getRequest(comments_url, comment_id, token);
 
     if(comment && comment.status < 300){
-        console.log(comment);
+        console.log(comment);;
         const data = comment.data[0];
         const commentHeader = document.getElementById('comment-header');
         const commentBody = document.getElementById('comment-body');
         const commentFooter = document.getElementById('comment-footer');
         const commentButton = document.querySelector('.button');
         const statusButton = document.getElementById('statusButton');
+        const formData = new FormData();
 
         commentButton.innerHTML = data.status === 0 ? "Enable" : "Disable";
         statusButton.id = data.status === 0 ? "enable" : "disable";
@@ -41,7 +42,8 @@ document.addEventListener('DOMContentLoaded', async () => {
             // Get the enable button and add an event
             document.querySelector('#enable').addEventListener('click', async () =>{
                 if(confirm('Are you sure do you want to enable this comment?')){
-                    const response = await editRequest(comments_url, comment_id, { type : "enable" }, token);
+                    formData.append('type', 'enable')
+                    const response = await editRequest(comments_url, comment_id, formData, token);
                     if(response.status < 300) {
                         alert(response.message);
                         window.location.href = '../../navigate/comments.html';
@@ -54,7 +56,8 @@ document.addEventListener('DOMContentLoaded', async () => {
             // Get the disable button and add an event
             document.querySelector('#disable').addEventListener('click', async () =>{
                 if(confirm('Are you sure do you want to disable this comment?')){
-                    const response = await editRequest(comments_url, comment_id, { type : "disable" }, token);
+                    formData.append('type', 'disable')
+                    const response = await editRequest(comments_url, comment_id, formData, token);
                     if(response.status < 300) {
                         alert(response.message);
                         window.location.href = '../../navigate/comments.html';
