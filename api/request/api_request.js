@@ -33,9 +33,8 @@ const editRequest = async (url, userId, formData = null, token) => {
         }
 
         const response = await fetch(`${url}?id=${userId}`, options);
-        
         const data = await response.json();
-        console.log(data);
+
         if(data){
             return data;
         }
@@ -55,14 +54,12 @@ const postRequest = async (url, token) => {
     });
 
     const data = await response.json();
-    console.log(data);
-
 }
 
 // Delete Request 
-const deleteRequest = async (url, userId, token) => {
+const deleteRequest = async (url, userId, type, token) => {
     try {
-        const response = await fetch(`${url}?id=${userId}`, {
+        const response = await fetch(`${url}?id=${userId}&type=${type}`, {
             method: "DELETE",
             headers: {
                 Authorization: `Bearer ${token}`

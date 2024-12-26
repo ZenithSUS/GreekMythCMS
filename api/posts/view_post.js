@@ -17,6 +17,7 @@ document.addEventListener('DOMContentLoaded', async () =>{
         const postButton = document.querySelector('.button');
         const statusButton = document.getElementById('statusButton');
         const formData = new FormData();
+        const type = "delete";
 
         postButton.innerHTML = data.status === 0 ? "Enable" : "Disable";
         statusButton.id = data.status === 0 ? "enable" : "disable";
@@ -75,7 +76,7 @@ document.addEventListener('DOMContentLoaded', async () =>{
         // Get the delete button and add an event
         document.getElementById('delete').addEventListener('click', async () =>{
             if(confirm('Are you sure do you want do delete this post?')){
-                const response = await deleteRequest(posts_url, post_id, token);
+                const response = await deleteRequest(posts_url, post_id, type, token);
                 if(response.status < 300) {
                     alert(response.message);
                     window.location.href = '../../navigate/posts.html';

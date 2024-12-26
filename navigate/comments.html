@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="../styles/comments.css">
     <script type="text/javascript" src="../api/greekmythApi.js"></script>
     <script type="text/javascript" src="../api/request/api_request.js"></script>
-    <title>GreekMyth CMS</title>
+    <title>Comments</title>
 </head>
 <body>
     <header>
@@ -32,7 +32,7 @@
         <h1>Settings</h1>
             <a href="../admin/settings/edit_account.html">Edit Account</a>
             <a href="../admin/settings/change_password.html">Change Password</a>
-            <a href="../admin/settings/delete_account.html">Delete Account</a>
+            <a onclick="deleteAccount()">Delete Account</a>
             <a href="../admin/settings/preferences.html">Preferences</a>
             <form id="logout">
                 <button type="submit" value="Logout" id="Process" onclick="return confirm('Are you sure you want to logout?')">Logout</button>
@@ -40,6 +40,47 @@
     </nav>
     <main>
         <h1 class="title">Comments</h1>
+
+        <div class="modal" id="modal">
+            <div class="modal-content">
+                <div class="close-container">
+                    <span onclick="document.getElementById('modal').style.display='none'" class="close" title="Close Modal">×</span>
+                </div>
+                <h1>Delete Account</h1>
+                <p>Are you sure you want to delete your account?</p>
+
+                <div class="clearfix">
+                    <button type="button" id="deleteAcc" class="deletebtn">Delete</button>
+                    <button type="button" id="cancel" class="cancelbtn">Cancel</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="delete-account-container" id="passwordForm">
+            <form> 
+                <h1>Confirm Delete Account</h1>
+                <div class="gridBox">
+                    <div class="formInput-container">
+                        <div class="input-field">
+                            <label for="Password">Password</label> 
+                            <input type="password" name="password" id="password" placeholder="Password"> 
+                        </div>
+                        <div class="input-field">
+                            <label for="Confirm Password">Confirm Password</label> 
+                            <input type="password" name="confirmpassword" id="confirmpassword" placeholder="Confirm Password"> 
+                        </div>
+                        <div class="delete-options-container">
+                            <div class="delete-options">
+                                <button type="button" id="DeleteConfirm">Confirm</button> 
+                                <button type="button" id="DeleteCancel">Cancel</button>
+                            </div>
+                            <span id="delstatus" name="delstatus"></span>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+
         <table>
             <thead>
                 <tr>
@@ -70,5 +111,7 @@
     <script> if(!token)  window.location.href = '../auth/login.html'; </script>
     <script type="text/javascript" src="../compenents/comments.js"></script>
     <script type="text/javascript" src="../api/auth/logout.js"></script>
+    <script type="text/javascript" src="../api/admin/delete_account.js"></script>
+    <script type="text/javascript" src="../api/field_check/greekMythApiFieldErrors.js"></script>
 </body>
 </html>

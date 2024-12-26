@@ -3,6 +3,8 @@ const commentDisplayData = (comments, page = currentPage) => {
     const commentsTableData = (comments) => {
         const tableBody = document.querySelector('tbody');
         const formData = new FormData();
+        const type = "user";
+
         tableBody.innerHTML = comments.map(comment => `
          <tr>
                 <td>${comment.username}</td>
@@ -59,7 +61,7 @@ const commentDisplayData = (comments, page = currentPage) => {
         deleteButton.forEach(button => {
             button.addEventListener('click', async () =>{
                 if(confirm('Are you sure do you want do delete this comment?')){
-                    const response = await deleteRequest(comments_url, button.dataset.id, token);
+                    const response = await deleteRequest(comments_url, button.dataset.id, type, token);
                     if(response.status < 300) {
                         alert(response.message);
                         window.location.reload();
@@ -126,7 +128,7 @@ const commentDisplayData = (comments, page = currentPage) => {
         paginationContainer.appendChild(nextButton);
 
         document.getElementById('pagination-number').innerHTML = `
-            <h3>${currentPage} of ${totalPages}</h3>
+            <h3>Page ${currentPage} of ${totalPages}</h3>
         `;
     }
     
