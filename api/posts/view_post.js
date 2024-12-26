@@ -16,6 +16,7 @@ document.addEventListener('DOMContentLoaded', async () =>{
         const postFooter = document.getElementById('post-footer');
         const postButton = document.querySelector('.button');
         const statusButton = document.getElementById('statusButton');
+        const formData = new FormData();
 
         postButton.innerHTML = data.status === 0 ? "Enable" : "Disable";
         statusButton.id = data.status === 0 ? "enable" : "disable";
@@ -42,7 +43,8 @@ document.addEventListener('DOMContentLoaded', async () =>{
             // Get the enable button and add an event
             document.querySelector('#enable').addEventListener('click', async () =>{
                 if(confirm('Are you sure do you want to enable this post?')){
-                    const response = await editRequest(posts_url, post_id, { type : "enable" }, token);
+                    formData.append('type', 'enable')
+                    const response = await editRequest(posts_url, post_id, formData, token);
                     if(response.status < 300) {
                         alert(response.message);
                         window.location.href = '../../navigate/posts.html';
@@ -55,7 +57,8 @@ document.addEventListener('DOMContentLoaded', async () =>{
             // Get the disable button and add an event
             document.querySelector('#disable').addEventListener('click', async () =>{
                 if(confirm('Are you sure do you want to disable this post?')){
-                    const response = await editRequest(posts_url, post_id, { type : "disable" }, token);
+                    formData.append('type', 'disable');
+                    const response = await editRequest(posts_url, post_id, formData, token);
                     if(response.status < 300) {
                         alert(response.message);
                         window.location.href = '../../navigate/posts.html';

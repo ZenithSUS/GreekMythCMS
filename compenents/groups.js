@@ -2,6 +2,7 @@ const groupDisplayData = (groups, page = currentPage) => {
 
     const groupsTableData = (groups) => {
         const tableBody = document.querySelector('tbody');
+        const formData = new FormData();
         tableBody.innerHTML = groups.map(group => `
            <tr>
                 <td>${group.name}</td>
@@ -22,7 +23,8 @@ const groupDisplayData = (groups, page = currentPage) => {
         disableButton.forEach(button => {
             button.addEventListener('click', async () => {
                 if(confirm('Are you sure do you want to disable this group?')){
-                    const response = await editRequest(groups_url, button.dataset.id, { type : "disable"}, token);
+                    formData.append('type', 'disable');
+                    const response = await editRequest(groups_url, button.dataset.id, formData, token);
                     if(response.status < 300) {
                         alert(response.message);
                         window.location.reload();
@@ -37,7 +39,8 @@ const groupDisplayData = (groups, page = currentPage) => {
         enableButton.forEach(button => {
             button.addEventListener('click', async () => {
                 if(confirm('Are you sure do you want to enable this group?')){
-                    const response = await editRequest(groups_url, button.dataset.id, { type : "enable"}, token);
+                    formData.append('type', 'enable');
+                    const response = await editRequest(groups_url, button.dataset.id, formData, token);
                     if(response.status < 300) {
                         alert(response.message);
                         window.location.reload();

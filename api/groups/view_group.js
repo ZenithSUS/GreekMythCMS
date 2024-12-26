@@ -11,6 +11,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     if(group && group.status < 300){
         console.log(group);
         const data = group.data[0];
+        const formData = new FormData();
         const groupInfo = document.getElementById('group-info');
         //Display Group Info
         document.getElementById('image').src = data.image_url;
@@ -34,7 +35,8 @@ document.addEventListener('DOMContentLoaded', async () => {
             // Get the enable button and add an event
             document.querySelector('#enable').addEventListener('click', async () =>{
                 if(confirm('Are you sure do you want to enable this group?')){
-                    const response = await editRequest(groups_url, group_id, { type : "enable" }, token);
+                    formData.append('type', 'enable');
+                    const response = await editRequest(groups_url, group_id, formData, token);
                     if(response.status < 300) {
                         alert(response.message);
                         window.location.href = '../../navigate/groups.html';
@@ -47,7 +49,8 @@ document.addEventListener('DOMContentLoaded', async () => {
             // Get the disable button and add an event
             document.querySelector('#disable').addEventListener('click', async () => {
                 if(confirm('Are you sure do you want to disable this group?')){
-                    const response = await editRequest(groups_url, group_id, { type : "disable" }, token);
+                    formData.append('type', 'disable');
+                    const response = await editRequest(groups_url, group_id, formData, token);
                     if(response.status < 300) {
                         alert(response.message);
                         window.location.href = '../../navigate/groups.html';

@@ -22,14 +22,14 @@ const getRequest = async (url, value, token) => {
 const editRequest = async (url, userId, formData = null, token) => {
     try {
         const options = {
-            method: "PUT",
+            method: "POST",
             headers: {
                 Authorization: `Bearer ${token}`,
             }
         };
 
-        if(formData){
-            options['body'] = JSON.stringify(formData);
+        if(formData instanceof FormData){
+            options['body'] = formData;
         }
 
         const response = await fetch(`${url}?id=${userId}`, options);

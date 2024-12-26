@@ -24,18 +24,18 @@ document.addEventListener('DOMContentLoaded', async () => {
     
     // If the user clicks change
     changeButton.addEventListener('click', async () => { 
-        let formData = {}
-        const username = santizeInput(form.usernameEdit.value) ? santizeInput(form.usernameEdit.value) : null;
-        const email = santizeInput(form.emailEdit.value) ? santizeInput(form.emailEdit.value) : null;
+        const username = santizeInput(form.usernameEdit.value) ? santizeInput(form.usernameEdit.value) : "";
+        const email = santizeInput(form.emailEdit.value) ? santizeInput(form.emailEdit.value) : "";
         const type = "admin";
-        formData = {
-            'usernameEdit': username,
-            'emailEdit': email,
-            'type': type
-        }; 
+
+        const formData = new FormData();
+        formData.append('usernameEdit', username);
+        formData.append('emailEdit', email);
+        formData.append('type', type);
 
         const response  = await editRequest(users_url, user_id, formData, token);
         if(response.status < 300){
+            changeButton.disabled = true;
             alert(response.message);
             window.location.href = '../../index.html';
         } else {
