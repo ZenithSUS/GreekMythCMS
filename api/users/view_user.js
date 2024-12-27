@@ -5,7 +5,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     const user_id = urlParams.get('id');
 
     if(!user_id) {
-        window.location.href = '../../navigate/users.html';
+        window.location.href = 'navigate/users.html';
     }
 
     // Fetch user data from the API
@@ -34,7 +34,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     // Get the edit Button and add an event
     document.getElementById('edit-user').addEventListener('click', (e) => {
         e.preventDefault();
-        window.location.href = `edit_user.html?id=${user_id}`;
+        window.location.href = `admin/users/edit_user.html?id=${user_id}`;
     });
 
     // Get the delete Button and add an event
@@ -44,7 +44,7 @@ document.addEventListener('DOMContentLoaded', async () => {
             if(response.status < 300) {
                 console.log(response)
                 alert(response.message);
-                window.location.href = '../../navigate/users.html';
+                window.location.href = 'navigate/users.html';
             } else {
                 console.error('Error deleting data:', response.message)
             }
@@ -54,7 +54,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     // Get the Go Back button and add an event 
     document.getElementById('back').addEventListener('click', (e) =>{
         e.preventDefault();
-        window.location.href = '../../navigate/users.html';
+        window.location.href = 'navigate/users.html';
     })
 });
 

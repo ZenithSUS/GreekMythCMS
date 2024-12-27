@@ -13,8 +13,8 @@ const userDisplayData = (user, page = currentPage) =>{
                 <td>${user.bio != "" && user.bio != null ? user.bio : "No bio"}</td>
                 <td>${DateFormat(user.joined_at)}</td>
                 <td class='user-options'>
-                    <a class='edit' href='../admin/users/edit_user.html?id=${user.user_id}'>Edit</a>
-                    <a class='view' href='../admin/users/view_user.html?id=${user.user_id}'>View</a>
+                    <a class='edit' href='admin/users/edit_user.html?id=${user.user_id}'>Edit</a>
+                    <a class='view' href='admin/users/view_user.html?id=${user.user_id}'>View</a>
                     <a class='delete' data-id=${user.user_id}>Delete</a>
                 </td>
             </tr>    

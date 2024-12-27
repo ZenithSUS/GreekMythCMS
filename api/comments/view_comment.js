@@ -36,7 +36,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
         // Get the back button and add an event
         document.getElementById('back').addEventListener('click', () => {
-            window.location.href = '../../navigate/comments.html';
+            window.location.href = 'navigate/comments.html';
         });
 
         if(statusButton.id === "enable"){
@@ -47,7 +47,7 @@ document.addEventListener('DOMContentLoaded', async () => {
                     const response = await editRequest(comments_url, comment_id, formData, token);
                     if(response.status < 300) {
                         alert(response.message);
-                        window.location.href = '../../navigate/comments.html';
+                        window.location.href = 'navigate/comments.html';
                     } else {
                         console.error('Error deleting data:', response.message)
                     }
@@ -61,7 +61,7 @@ document.addEventListener('DOMContentLoaded', async () => {
                     const response = await editRequest(comments_url, comment_id, formData, token);
                     if(response.status < 300) {
                         alert(response.message);
-                        window.location.href = '../../navigate/comments.html';
+                        window.location.href = 'navigate/comments.html';
                     } else {
                         console.error('Error deleting data:', response.message)
                     }
@@ -76,7 +76,7 @@ document.addEventListener('DOMContentLoaded', async () => {
                 const response = await deleteRequest(comments_url, comment_id, type, token);
                 if(response.status < 300) {
                     alert(response.message);
-                    window.location.href = '../../navigate/posts.html';
+                    window.location.href = 'navigate/posts.html';
                 } else {
                     console.error('Error deleting data:', response.message)
                 }

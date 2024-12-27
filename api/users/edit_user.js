@@ -3,7 +3,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     const userId = urlParams.get('id'); 
 
     if(!userId) {
-        window.location.href = '../../navigate/users.html';
+        window.location.href = 'navigate/users.html';
     }
   
     const user = await getRequest(users_url, userId, token);
@@ -44,7 +44,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         if(response.status < 300){
             changeButton.disabled = true;
             alert(response.message);
-            window.location.href = '../../navigate/users.html';
+            window.location.href = 'navigate/users.html';
         } else {
             checkErrors(response.error);
         }
@@ -52,7 +52,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     // If the user clicks cancel
     document.getElementById('Cancel').addEventListener('click', () => {
-        window.location.href = '../../navigate/users.html';
+        window.location.href = 'navigate/users.html';
     });
 
   });

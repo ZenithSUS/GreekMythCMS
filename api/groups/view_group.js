@@ -3,7 +3,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     const group_id = urlParams.get('id');
 
     if(!group_id){
-        window.location.href = '../../navigate/groups.html';
+        window.location.href = 'navigate/groups.html';
     }
 
     const group = await getRequest(groups_url, group_id, token);
@@ -40,7 +40,7 @@ document.addEventListener('DOMContentLoaded', async () => {
                     const response = await editRequest(groups_url, group_id, formData, token);
                     if(response.status < 300) {
                         alert(response.message);
-                        window.location.href = '../../navigate/groups.html';
+                        window.location.href = 'navigate/groups.html';
                     } else {
                         console.error('Error deleting data:', response.message)
                     }
@@ -54,7 +54,7 @@ document.addEventListener('DOMContentLoaded', async () => {
                     const response = await editRequest(groups_url, group_id, formData, token);
                     if(response.status < 300) {
                         alert(response.message);
-                        window.location.href = '../../navigate/groups.html';
+                        window.location.href = 'navigate/groups.html';
                     } else {
                         console.error('Error deleting data:', response.message)
                     }
@@ -63,7 +63,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         }
 
         document.getElementById('back').addEventListener('click', () => {
-            window.location.href = '../../navigate/groups.html';
+            window.location.href = 'navigate/groups.html';
         }); 
 
         document.getElementById('delete').addEventListener('click', async() => {
@@ -71,7 +71,7 @@ document.addEventListener('DOMContentLoaded', async () => {
                 const response = await deleteRequest(groups_url, group_id, type, token);
                 if(response.status < 300) {
                     alert(response.message);
-                    window.location.href = '../../navigate/groups.html';
+                    window.location.href = 'navigate/groups.html';
                 } else {
                     console.error('Error deleting data:', response.message)
                 }

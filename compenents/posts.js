@@ -3,7 +3,7 @@ const postDisplayData = (posts, page = currentPage) => {
     const postTableData = (posts) => {
         const tableBody = document.querySelector('tbody');
         const formData = new FormData();
-        const type = "user";
+        const type = "delete";
         tableBody.innerHTML = posts.map(post => `
            <tr>
                 <td>${post.username}</td>
@@ -13,7 +13,7 @@ const postDisplayData = (posts, page = currentPage) => {
                 <td>${post.name != null ? post.name : "N/A"}</td>
                 <td>${post.status === 1 ? "Permited" : "Disabled"}</td>
                 <td class='user-options'>
-                    <a class='view' href='../admin/posts/view_post.html?id=${post.post_id}'>View</a>
+                    <a class='view' href='admin/posts/view_post.html?id=${post.post_id}'>View</a>
                     <a class='${post.status === 1 ? "disable" : "enable"}' data-id=${post.post_id}>${post.status === 1 ? "Disable" : "Enable"}</a>
                     <a class='delete' data-id=${post.post_id}>Delete</a>
                 </td>

@@ -2,12 +2,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../global.css">
-    <link rel="stylesheet" href="../styles/auth.css">
+    <base href="/xampp/htdocs/GreekMythCMS/">
+    <link rel="stylesheet" href="global.css">
+    <link rel="stylesheet" href="styles/auth.css">
     <title>Register</title>
     <script>
         token = localStorage.getItem('token');
-        if(token) window.location.href = '../index.html';
+        if(token) window.location.href = 'index.html';
      </script>
 </head>
 <body>
@@ -34,13 +35,13 @@
             </div>
             <div class="image-field">
                 <label for="Image">Image</label>
-                <img src="../src/images/default.jpg" alt="user" id="profilePic">
+                <img src="src/images/default.jpg" alt="user" id="profilePic">
                 <input type="file" name="image" accept="image/*" id="image">
                 <p>Maximum of 5MB</p>
             </div>
             <div class="group-container">
                 <button type="submit" id="Process" value="Register">Register</button>
-                <p>Already have an account? <a href="login.html">Sign In</a></p>
+                <p>Already have an account? <a href="auth/login.html">Sign In</a></p>
             </div>
         </form>
     </div>
@@ -57,7 +58,7 @@
             }
         })
     </script>
-    <script src="../api/auth/greekmythApiAuth.js"></script>
-    <script src="../api/field_check/greekMythApiFieldErrors.js"></script>
+    <script src="api/auth/greekmythApiAuth.js"></script>
+    <script src="api/field_check/greekMythApiFieldErrors.js"></script>
 </body>
 </html>

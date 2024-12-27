@@ -2,7 +2,7 @@ document.addEventListener('DOMContentLoaded', async () =>{
     const urlParams = new URLSearchParams(window.location.search);
     const post_id = urlParams.get('id');
     if(!post_id){
-        window.location.href = '../../navigate/posts.html';
+        window.location.href = 'navigate/posts.html';
     }
 
     const post = await getRequest(posts_url, post_id, token);
@@ -24,7 +24,7 @@ document.addEventListener('DOMContentLoaded', async () =>{
 
         // Display The data 
         postHeader.innerHTML = `
-            <h3>Title: ${data.title} by <a href='../../admin/users/view_user.html?id=${data.author}'>${data.username}</a></h3>
+            <h3>Title: ${data.title} by <a href='admin/users/view_user.html?id=${data.author}'>${data.username}</a></h3>
             <h3>Posted at: ${DateFormat(data.created_at)}</h3>
         `;
         postBody.innerHTML = `
@@ -37,7 +37,7 @@ document.addEventListener('DOMContentLoaded', async () =>{
 
         // Get the back button and add an event
         document.getElementById('back').addEventListener('click', () => {
-            window.location.href = '../../navigate/posts.html';
+            window.location.href = 'navigate/posts.html';
         });
 
         if(statusButton.id === "enable"){
@@ -48,7 +48,7 @@ document.addEventListener('DOMContentLoaded', async () =>{
                     const response = await editRequest(posts_url, post_id, formData, token);
                     if(response.status < 300) {
                         alert(response.message);
-                        window.location.href = '../../navigate/posts.html';
+                        window.location.href = 'navigate/posts.html';
                     } else {
                         console.error('Error deleting data:', response.message)
                     }
@@ -62,7 +62,7 @@ document.addEventListener('DOMContentLoaded', async () =>{
                     const response = await editRequest(posts_url, post_id, formData, token);
                     if(response.status < 300) {
                         alert(response.message);
-                        window.location.href = '../../navigate/posts.html';
+                        window.location.href = 'navigate/posts.html';
                     } else {
                         console.error('Error deleting data:', response.message)
                     }
@@ -79,7 +79,7 @@ document.addEventListener('DOMContentLoaded', async () =>{
                 const response = await deleteRequest(posts_url, post_id, type, token);
                 if(response.status < 300) {
                     alert(response.message);
-                    window.location.href = '../../navigate/posts.html';
+                    window.location.href = 'navigate/posts.html';
                 } else {
                     console.error('Error deleting data:', response.message)
                 }

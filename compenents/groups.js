@@ -3,7 +3,7 @@ const groupDisplayData = (groups, page = currentPage) => {
     const groupsTableData = (groups) => {
         const tableBody = document.querySelector('tbody');
         const formData = new FormData();
-        const type = "user";
+        const type = "delete";
 
         tableBody.innerHTML = groups.map(group => `
            <tr>
@@ -13,7 +13,7 @@ const groupDisplayData = (groups, page = currentPage) => {
                 <td><img src="${group.image_url}" alt="No Image"></td>
                 <td>${group.status === 1 ? "Permited" : "Disabled"}</td>
                 <td class='user-options'>
-                    <a class='view' href='../admin/groups/view_group.html?id=${group.greek_id}'>View</a>
+                    <a class='view' href='admin/groups/view_group.html?id=${group.greek_id}'>View</a>
                     <a class='${group.status === 1 ? "disable" : "enable"}' data-id=${group.greek_id}>${group.status === 1 ? "Disable" : "Enable"}</a>
                     <a class='delete' data-id=${group.greek_id}>Delete</a>
                 </td>
