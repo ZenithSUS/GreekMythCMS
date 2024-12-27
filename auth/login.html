@@ -2,12 +2,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../global.css">
-    <link rel="stylesheet" href="../styles/auth.css">
+    <base href="/xampp/htdocs/GreekMythCMS/">
+    <link rel="stylesheet" href="global.css">
+    <link rel="stylesheet" href="styles/auth.css">
     <title>Login</title>
     <script>
        token = localStorage.getItem('token');
-       if(token) window.location.href = '../index.html';
+       if(token) window.location.href = 'index.html';
     </script>
 </head>
 <body>
@@ -24,12 +25,12 @@
             </div>
             <div class="group-container">
                 <button type="submit" name="login" id="Process" value="Login">Login</button>
-                <p>Dont have an account? <a href="register.html">Register</a></p>
+                <p>Dont have an account? <a href="auth/register.html">Register</a></p>
                 <span id="auth_status" name="auth_status"></span>
             </div>
         </form>
     </div>
-    <script src="../api/auth/greekmythApiAuth.js"></script>
-    <script src="../api/field_check/greekMythApiFieldErrors.js"></script>
+    <script src="api/auth/greekmythApiAuth.js"></script>
+    <script src="api/field_check/greekMythApiFieldErrors.js"></script>
 </body>
 </html>

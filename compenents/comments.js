@@ -3,7 +3,7 @@ const commentDisplayData = (comments, page = currentPage) => {
     const commentsTableData = (comments) => {
         const tableBody = document.querySelector('tbody');
         const formData = new FormData();
-        const type = "user";
+        const type = "delete";
 
         tableBody.innerHTML = comments.map(comment => `
          <tr>
@@ -14,7 +14,7 @@ const commentDisplayData = (comments, page = currentPage) => {
                 <td>${comment.dislikes}</td>
                 <td>${comment.name !== null ? comment.name : "N/A"}</td>
                 <td class='user-options'>
-                    <a class='view' href='../admin/comments/view_comment.html?id=${comment.comment_id}'>View</a>
+                    <a class='view' href='admin/comments/view_comment.html?id=${comment.comment_id}'>View</a>
                     <a class='${comment.status === 1 ? "disable" : "enable"}' data-id=${comment.comment_id}>${comment.status === 1 ? "Disable" : "Enable"}</a>
                     <a class='delete' data-id=${comment.comment_id}>Delete</a>
                 </td>

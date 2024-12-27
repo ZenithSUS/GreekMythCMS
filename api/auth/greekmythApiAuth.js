@@ -39,7 +39,7 @@ form.addEventListener('submit', async (e) => {
             }
 
             if (form.Process.value == "Register") {
-                window.location.href = 'login.html';
+                window.location.href = 'auth/login.html';
             }
 
         } else {

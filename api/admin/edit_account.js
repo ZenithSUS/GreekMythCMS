@@ -37,7 +37,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         if(response.status < 300){
             changeButton.disabled = true;
             alert(response.message);
-            window.location.href = '../../index.html';
+            window.location.href = 'index.html';
         } else {
             checkErrors(response.error);
         }
@@ -45,6 +45,6 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     // If the user clicks cancel
     document.getElementById('Cancel').addEventListener('click', () => {
-        window.location.href = '../../index.html';
+        window.location.href = 'index.html';
     });
 });

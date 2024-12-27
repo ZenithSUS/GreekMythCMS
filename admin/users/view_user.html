@@ -2,37 +2,38 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" href="../../src/images/logo_transparent.png">
-    <link rel="stylesheet" href="../../global.css">
-    <link rel="stylesheet" href="../../styles/users.css">
+    <base href="/xampp/htdocs/GreekMythCMS/">
+    <link rel="icon" href="src/images/logo_transparent.png">
+    <link rel="stylesheet" href="global.css">
+    <link rel="stylesheet" href="styles/users.css">
     <title>User Information</title>
-    <script type="text/javascript" src="../../api/greekmythApi.js"></script>
-    <script type="text/javascript" src="../../api/request/api_request.js"></script>
-    <script type="text/javascript" src="../../api/users/view_user.js"></script>
+    <script type="text/javascript" src="api/greekmythApi.js"></script>
+    <script type="text/javascript" src="api/request/api_request.js"></script>
+    <script type="text/javascript" src="api/users/view_user.js"></script>
 </head>
 <body>
     <header>
-        <img class="logo" src="../../src/images/logo_transparent.png" alt="logo">
+        <img class="logo" src="src/images/logo_transparent.png" alt="logo">
         <h1>GreekMyth Content Management System</h1>
         <div class="userContainer">
             <div class="user">
-                <img id="profile-pic" src="../../src/images/default.jpg" alt="profile">
+                <img id="profile-pic" src="src/images/default.jpg" alt="profile">
                 <h2 id="username">Loading...</h2>
             </div>
         </div>
     </header>
     <nav>
         <h1>Navigation</h1>
-            <a href="../../index.html">Dashboard</a>
-            <a href="../../navigate/users.html">Users</a>
-            <a href="../../navigate/posts.html">Posts</a>
-            <a href="../../navigate/groups.html">Groups</a>
-            <a href="../../navigate/comments.html">Comments</a>
+            <a href="index.html">Dashboard</a>
+            <a href="navigate/users.html">Users</a>
+            <a href="navigate/posts.html">Posts</a>
+            <a href="navigate/groups.html">Groups</a>
+            <a href="navigate/comments.html">Comments</a>
         <h1>Settings</h1>
-            <a href="../settings/edit_account.html">Edit Account</a>
-            <a href="../settings/change_password.html">Change Password</a>
+            <a href="admin/settings/edit_account.html">Edit Account</a>
+            <a href="admin/settings/change_password.html">Change Password</a>
             <a onclick="deleteAccount()">Delete Account</a>
-            <a href="../settings/preferences.html">Preferences</a>
+            <a href="admin/settings/preferences.html">Preferences</a>
             <form id="logout">
                 <button type="submit" value="Logout" id="Process" onclick="return confirm('Are you sure you want to logout?')">Logout</button>
             </form>
@@ -83,7 +84,7 @@
         <div class="userInfo-container">
             <div class="userInfo">
                 <div class="info-box">
-                    <img src="../../src/images/default.jpg" alt="Image" id="userImage">
+                    <img src="src/images/default.jpg" alt="Image" id="userImage">
                     <div class="info">
                         <div class="infoText-container">
                             <h2 class="infoText">
@@ -152,9 +153,9 @@
             </div>
         </div>
     </main>
-    <script> if(!token)  window.location.href = '../../auth/login.html'; </script>
-    <script type="text/javascript" src="../../api/auth/logout.js"></script>
-    <script type="text/javascript" src="../../api/admin/delete_account.js"></script>
-    <script type="text/javascript" src="../../api/field_check/greekMythApiFieldErrors.js"></script>
+    <script> if(!token)  window.location.href = 'auth/login.html'; </script>
+    <script type="text/javascript" src="api/auth/logout.js"></script>
+    <script type="text/javascript" src="api/admin/delete_account.js"></script>
+    <script type="text/javascript" src="api/field_check/greekMythApiFieldErrors.js"></script>
 </body>
 </html>
