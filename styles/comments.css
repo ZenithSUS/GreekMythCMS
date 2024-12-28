@@ -73,17 +73,16 @@
             button {
                 width: 100%;
                 max-width: 300px;
-                background-color: var(--dark-color);
+                background-color: var(--button-color);
                 color: var(--light-color);
                 border-radius: 0.5rem;
                 padding: 0.5rem;
                 font-size: 1rem;
-                border: 0.2rem solid var(--dark-color);
                 cursor: pointer;
     
                 &:hover {
                     transition: background-color 0.5s ease-in-out;
-                    background-color: var(--light-color);
+                    background-color: var(--button-hover-color);
                     color: var(--dark-color);
                 }
             }
@@ -116,17 +115,16 @@
             
             button {
                 width: fit-content;
-                background-color: var(--dark-color);
+                background-color: var(--button-color);
                 color: var(--light-color);
                 border-radius: 0.5rem;
                 padding: 0.5rem;
                 font-size: 1rem;
-                border: 0.2rem solid var(--dark-color);
                 cursor: pointer;
         
                 &:hover {
                     transition: background-color 0.5s ease-in-out;
-                    background-color: var(--light-color);
+                    background-color: var(--button-hover-color);
                     color: var(--dark-color);
                 }
             }

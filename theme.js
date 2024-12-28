@@ -1,7 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
     const header = document.querySelector('header');
     const body = document.body;
-    const darkModeSwitch = document.querySelector('#dark-mode-switch');
     const root = document.documentElement;
     const style = getComputedStyle(root);
     const primaryColor = style.getPropertyValue('--primary-color'); 
@@ -18,44 +17,20 @@ document.addEventListener('DOMContentLoaded', () => {
     const darkModeImageBg = 'src/images/waves.jpg';
 
     const applyTheme = (isDarkMode) => {
-        darkModeSwitch.value = isDarkMode ? "dark" : "light";
-        header.style.color = isDarkMode ? lightColor : '';
+        header.style.color = lightColor;
         root.style.setProperty('--dark-color', isDarkMode ? lightColor : darkColor);
         root.style.setProperty('--light-color', isDarkMode ? darkColor : lightColor);
         root.style.setProperty('--primary-color', isDarkMode ? secondaryColor : primaryColor);
         root.style.setProperty('--secondary-color', isDarkMode ? darkColor : secondaryColor);
-        root.style.setProperty('--button-color', isDarkMode ? buttonDarkColor : buttonLightColor);
+        root.style.setProperty('--button-color', isDarkMode ? buttonDarkColor: buttonLightColor);
         root.style.setProperty('--button-hover-color', isDarkMode ? buttonHoverDarkColor : buttonHoverLightColor);
         root.style.setProperty('--nav-hover-color', isDarkMode ? navHoverDarkColor : navHoverLightColor);
         body.style.backgroundImage = `url(${isDarkMode ? darkModeImageBg : lightModeImagebg})`;
-        localStorage.setItem('theme', isDarkMode ? "1" : "0");
-    };
-
-    if (theme == 1) {
-        darkModeSwitch.checked = true;
+    }
+    
+    if(theme == 1){
         applyTheme(true);
     } else {
-        darkModeSwitch.checked = false;
-        applyTheme(false);
+       applyTheme(false);
     }
-
-    if (darkModeSwitch) {
-        darkModeSwitch.addEventListener('change', (event) => {
-            applyTheme(event.target.checked);
-        });
-    }
-
-    document.getElementById('save').addEventListener('click', async (e) => {
-        e.preventDefault();
-        try {
-            const formData = new FormData();
-            formData.append('type', darkModeSwitch.value);
-            const request = await editRequest(users_url, user_id, formData, token);
-            if (request.status < 300) {
-                window.location.href = 'index.html';
-            }
-        } catch (error) {
-            console.error('Failed to change settings:', error);
-        }
-    });
 });
