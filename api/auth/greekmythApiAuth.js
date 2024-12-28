@@ -35,6 +35,7 @@ form.addEventListener('submit', async (e) => {
             if (form.Process.value == "Login") {
                 localStorage.setItem('token', data.data.token);
                 localStorage.setItem('user_id', data.data.user_id);
+                localStorage.setItem('theme', data.data.theme);
                 window.location.reload();
             }
 

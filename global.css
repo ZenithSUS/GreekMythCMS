@@ -13,8 +13,22 @@
     --friends-color: yellow;
     --groups-color: lightcoral;
 
+    /*Colors for the button */
+    --button-color: #1C1D17;
+    --button-hover-color: orange; 
+    --dark-mode-button-color: #BB86FC;
+    --dark-mode-button-hover-color: rgb(109, 15, 109);
+
+    /*Colors for the navs */
+    --nav-hover-color: #1A1A2E;
+    --nav-hover-dark-color: #BB86FC;
+
     /* Fonts for the system */
     --font-style1: 'Constatine', 'serif';
+}
+
+button {
+    border: none;
 }
 
 span {
@@ -42,8 +56,6 @@ body {
     background-attachment: fixed;
     color: var(--dark-color);
 }
-
-
 
 
 header {
@@ -96,7 +108,7 @@ header {
 }
 
 nav {
-    opacity: 0.8;
+    opacity: 0.9;
     position: fixed;
     top: 100px;
     left: 0;
@@ -137,7 +149,7 @@ nav {
         
 
         &:hover {
-            background-color: var(--dark-color);
+            background-color: var(--nav-hover-color);
             color: var(--light-color);
             transition: background-color 0.3s ease-in-out;
         }
@@ -164,7 +176,7 @@ nav {
             color: var(--dark-color);
 
             &:hover {
-                background-color: var(--dark-color);
+                background-color: var(--button-hover-color);
                 color: var(--light-color);
                 transition: background-color 0.3s ease-in-out;
             }
@@ -246,12 +258,11 @@ main {
               
             
             .cancelbtn {
-                background-color: var(--dark-color);
+                background-color: var(--button-color);
                 color: var(--light-color);
-                border: solid 2px var(--dark-color);
 
                 &:hover {
-                    background-color: var(--light-color);
+                    background-color: var(--button-hover-color);
                     color: var(--dark-color);
                     transition: background-color 0.3s ease-in-out;
                 }
@@ -345,18 +356,17 @@ main {
         
                     button {
                         width: fit-content;
-                        background-color: var(--dark-color);
+                        background-color: var(--button-color);
                         color: var(--light-color);
                         border-radius: 0.5rem;
                         padding: 0.5rem;
                         margin-bottom: 0.5rem;
                         font-size: 1rem;
-                        border: 0.2rem solid var(--dark-color);
                         cursor: pointer;
             
                         &:hover {
                             transition: background-color 0.5s ease-in-out;
-                            background-color: var(--light-color);
+                            background-color: var(--button-hover-color);
                             color: var(--dark-color);
                         }
                     }

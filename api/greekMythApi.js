@@ -32,9 +32,10 @@ const checkURL = (currentURL) => {
 }
 
 
-// Get User Id and Token from local storage
+// Get User data from local storage
 const token = localStorage.getItem('token');
 const user_id = localStorage.getItem('user_id');
+const theme = localStorage.getItem('theme');
 
 // Object to store the fetched data
 let fetchedData;
