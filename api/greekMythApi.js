@@ -36,6 +36,7 @@ const checkURL = (currentURL) => {
 const token = localStorage.getItem('token');
 const user_id = localStorage.getItem('user_id');
 const theme = localStorage.getItem('theme');
+const font_style = localStorage.getItem('font-style');
 
 // Object to store the fetched data
 let fetchedData;

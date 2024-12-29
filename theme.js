@@ -16,7 +16,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const lightModeImagebg = 'src/images/abandon.jpg';
     const darkModeImageBg = 'src/images/waves.jpg';
 
-    const applyTheme = (isDarkMode) => {
+    const applyMode = (isDarkMode) => {
         header.style.color = lightColor;
         root.style.setProperty('--dark-color', isDarkMode ? lightColor : darkColor);
         root.style.setProperty('--light-color', isDarkMode ? darkColor : lightColor);
@@ -29,8 +29,26 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     
     if(theme == 1){
-        applyTheme(true);
+        applyMode(true);
     } else {
-       applyTheme(false);
+       applyMode(false);
     }
+
+    const applyFont = (font) => {
+        switch (font) {
+            case 'fonts1':
+                root.style.setProperty('--font-style', 'var(--font-style1)');
+                break;
+            case 'fonts2':
+                root.style.setProperty('--font-style', 'var(--font-style2)');
+                break;
+            case 'fonts3':
+                root.style.setProperty('--font-style', 'var(--font-style3)');
+                break;
+            default:
+                root.style.setProperty('--font-style', 'var(--font-style1)');
+        }
+    };
+
+    applyFont(font_style);
 });
