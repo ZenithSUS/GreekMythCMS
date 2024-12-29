@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="styles/table.css">
     <script type="text/javascript" src="api/greekmythApi.js"></script>
     <script type="text/javascript" src="theme.js"></script>
+    <script type="text/javascript" src="components/notification.js"></script>
     <script type="text/javascript" src="api/request/api_request.js"></script>
     <title>Posts</title>
 </head>
@@ -108,11 +109,15 @@
                 <div class="pagination-posts"></div>
             </div>
         </div>
+
+        <div class="notification-modal" id="notification-modal">
+            <div class="modal-content" id="modal-content"></div>
+        </div>
         
     </main>
 
     <script> if(!token)  window.location.href = 'auth/login.html'; </script>
-    <script type="text/javascript" src="compenents/posts.js"></script>
+    <script type="text/javascript" src="components/posts.js"></script>
     <script type="text/javascript" src="api/auth/logout.js"></script>
     <script type="text/javascript" src="api/admin/delete_account.js"></script>
     <script type="text/javascript" src="api/field_check/greekMythApiFieldErrors.js"></script>

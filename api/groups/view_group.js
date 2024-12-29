@@ -39,8 +39,7 @@ document.addEventListener('DOMContentLoaded', async () => {
                     formData.append('type', 'enable');
                     const response = await editRequest(groups_url, group_id, formData, token);
                     if(response.status < 300) {
-                        alert(response.message);
-                        window.location.href = 'navigate/groups.html';
+                        window.location.href = `navigate/groups.html?updated=${true}&message=${response.message}`;
                     } else {
                         console.error('Error deleting data:', response.message)
                     }
@@ -53,8 +52,7 @@ document.addEventListener('DOMContentLoaded', async () => {
                     formData.append('type', 'disable');
                     const response = await editRequest(groups_url, group_id, formData, token);
                     if(response.status < 300) {
-                        alert(response.message);
-                        window.location.href = 'navigate/groups.html';
+                        window.location.href = `navigate/groups.html?updated=${true}&message=${response.message}`;
                     } else {
                         console.error('Error deleting data:', response.message)
                     }
@@ -70,8 +68,7 @@ document.addEventListener('DOMContentLoaded', async () => {
             if(confirm('Are you sure do you want to delete this group?')){
                 const response = await deleteRequest(groups_url, group_id, type, token);
                 if(response.status < 300) {
-                    alert(response.message);
-                    window.location.href = 'navigate/groups.html';
+                    window.location.href = `navigate/groups.html?updated=${true}&message=${response.message}`;
                 } else {
                     console.error('Error deleting data:', response.message)
                 }

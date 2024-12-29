@@ -29,8 +29,7 @@ const postDisplayData = (posts, page = currentPage) => {
                     formData.append('type', 'disable');
                     const response = await editRequest(posts_url, button.dataset.id, formData, token);
                     if(response.status < 300) {
-                        alert(response.message);
-                        window.location.reload();
+                        window.location.href = `navigate/posts.html?updated=${true}&message=${response.message}`;
                     } else {
                         console.error('Error deleting data:', response.message)
                     }
@@ -46,8 +45,7 @@ const postDisplayData = (posts, page = currentPage) => {
                     formData.append('type', 'enable');
                      const response = await editRequest(posts_url, button.dataset.id, formData, token);
                      if(response.status < 300) {
-                         alert(response.message);
-                         window.location.reload();
+                        window.location.href = `navigate/posts.html?updated=${true}&message=${response.message}`;
                      } else {
                          console.error('Error deleting data:', response.message)
                      }
@@ -62,8 +60,7 @@ const postDisplayData = (posts, page = currentPage) => {
                 if(confirm('Are you sure do you want do delete this post?')){
                     const response = await deleteRequest(posts_url, button.dataset.id, type, token);
                     if(response.status < 300) {
-                        alert(response.message);
-                        window.location.reload();
+                        window.location.href = `navigate/posts.html?updated=${true}&message=${response.message}`;
                     } else {
                         console.error('Error deleting data:', response.message)
                     }
