@@ -23,12 +23,23 @@
     --nav-hover-color: #1A1A2E;
     --nav-hover-dark-color: #BB86FC;
 
+    /*Colors for the table options */
+    --options-text-color: #FFFBEF;
+
     /* Fonts for the system */
     --font-style1: 'Constatine', 'serif';
+    --font-style2:  monospace;
+    --font-style3: Arial, Helvetica, sans-serif;
+    --font-style: var(--font-style1); /* Default font style */
 }
 
 button {
     border: none;
+}
+
+input[type="text"]:focus, input[type="password"]:focus {
+    outline: none;
+    border-color: 5px var(--button-color);
 }
 
 span {
@@ -43,12 +54,11 @@ span {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: var(--font-style1);
+    font-family: var(--font-style);
 }
 
 /* Styling for Body */
 body {
-    font-family: Arial, Helvetica, sans-serif;
     background-image: url(src/images/abandon.jpg);
     background-repeat: no-repeat;
     background-size: cover;
@@ -139,7 +149,7 @@ nav {
         display: block;
         text-decoration: none;
         color: var(--dark-color);
-        font-size: 1.5rem;
+        font-size: 1.3rem;
         padding: 1rem;
         width: 100%;
         margin-left: 1rem;
@@ -164,7 +174,7 @@ nav {
         
 
         button {
-            font-size: 1.5rem;
+            font-size: 1.3rem;
             padding: 1rem;
             white-space: nowrap;
             border: none;
@@ -189,6 +199,7 @@ nav {
 main {
     display: flex;
     flex-direction: column;
+    align-items: center;
     margin-left: 240px;
     margin-top: 6.25rem;
     padding: 2rem;

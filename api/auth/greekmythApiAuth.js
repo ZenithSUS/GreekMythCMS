@@ -36,6 +36,7 @@ form.addEventListener('submit', async (e) => {
                 localStorage.setItem('token', data.data.token);
                 localStorage.setItem('user_id', data.data.user_id);
                 localStorage.setItem('theme', data.data.theme);
+                localStorage.setItem('font-style', data.data.font_style);
                 window.location.reload();
             }
 

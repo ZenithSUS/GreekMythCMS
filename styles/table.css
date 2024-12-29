@@ -2,6 +2,8 @@ table {
     padding: 1rem;
     background-color: var(--primary-color);
     border-collapse: collapse;
+    margin: 0 2rem;
+
 
     th {    
         padding: 1rem;
@@ -59,7 +61,7 @@ table {
                 padding: 0.5rem;
                 border-radius: 10px;
                 cursor: pointer;
-                color: var(--dark-color);
+                color: var(--options-text-color);
             }
         }
     }
