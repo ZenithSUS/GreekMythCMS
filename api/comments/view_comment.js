@@ -46,8 +46,7 @@ document.addEventListener('DOMContentLoaded', async () => {
                     formData.append('type', 'enable')
                     const response = await editRequest(comments_url, comment_id, formData, token);
                     if(response.status < 300) {
-                        alert(response.message);
-                        window.location.href = 'navigate/comments.html';
+                        window.location.href = `navigate/comments.html?updated=${true}&message=${response.message}`;
                     } else {
                         console.error('Error deleting data:', response.message)
                     }
@@ -60,8 +59,7 @@ document.addEventListener('DOMContentLoaded', async () => {
                     formData.append('type', 'disable')
                     const response = await editRequest(comments_url, comment_id, formData, token);
                     if(response.status < 300) {
-                        alert(response.message);
-                        window.location.href = 'navigate/comments.html';
+                        window.location.href = `navigate/comments.html?updated=${true}&message=${response.message}`;
                     } else {
                         console.error('Error deleting data:', response.message)
                     }

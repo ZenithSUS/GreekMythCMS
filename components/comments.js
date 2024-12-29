@@ -30,8 +30,7 @@ const commentDisplayData = (comments, page = currentPage) => {
                     formData.append('type', 'disable');
                     const response = await editRequest(comments_url, button.dataset.id, formData, token);
                     if(response && response.status < 300) {
-                        alert(response.message);
-                        window.location.reload();
+                        window.location.href = `navigate/comments.html?updated=${true}&message=${response.message}`;
                     } else {
                         console.error('Error deleting data:', response.message)
                     }
@@ -47,8 +46,7 @@ const commentDisplayData = (comments, page = currentPage) => {
                     formData.append('type', 'enable');
                      const response = await editRequest(comments_url, button.dataset.id, formData, token);
                      if(response.status < 300) {
-                         alert(response.message);
-                         window.location.reload();
+                        window.location.href = `navigate/comments.html?updated=${true}&message=${response.message}`;
                      } else {
                          console.error('Error deleting data:', response.message)
                      }
@@ -63,8 +61,7 @@ const commentDisplayData = (comments, page = currentPage) => {
                 if(confirm('Are you sure do you want do delete this comment?')){
                     const response = await deleteRequest(comments_url, button.dataset.id, type, token);
                     if(response.status < 300) {
-                        alert(response.message);
-                        window.location.reload();
+                        window.location.href = `navigate/comments.html?updated=${true}&message=${response.message}`;
                     } else {
                         console.error('Error deleting data:', response.message)
                     }

@@ -43,8 +43,7 @@ document.addEventListener('DOMContentLoaded', async () => {
             const response = await deleteRequest(users_url, user_id, token);
             if(response.status < 300) {
                 console.log(response)
-                alert(response.message);
-                window.location.href = 'navigate/users.html';
+                window.location.href = `navigate/users.html?updated=${true}&message=${response.message}`;
             } else {
                 console.error('Error deleting data:', response.message)
             }

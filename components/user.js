@@ -28,8 +28,7 @@ const userDisplayData = (user, page = currentPage) =>{
                 if(confirm('Are you sure do you want do delete this user?')){
                     const response = await deleteRequest(users_url, button.dataset.id, type, token);
                     if(response.status < 300) {
-                        alert(response.message);
-                        window.location.reload();
+                        window.location.href = `navigate/users.html?updated=${true}&message=${response.message}`;
                     } else {
                         console.error('Error deleting data:', response.message)
                     }

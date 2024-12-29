@@ -28,8 +28,7 @@ const groupDisplayData = (groups, page = currentPage) => {
                     formData.append('type', 'disable');
                     const response = await editRequest(groups_url, button.dataset.id, formData, token);
                     if(response.status < 300) {
-                        alert(response.message);
-                        window.location.reload();
+                        window.location.href = `navigate/groups.html?updated=${true}&message=${response.message}`;
                     } else {
                         console.error('Error deleting data:', response.message)
                     }
@@ -44,8 +43,7 @@ const groupDisplayData = (groups, page = currentPage) => {
                     formData.append('type', 'enable');
                     const response = await editRequest(groups_url, button.dataset.id, formData, token);
                     if(response.status < 300) {
-                        alert(response.message);
-                        window.location.reload();
+                        window.location.href = `navigate/groups.html?updated=${true}&message=${response.message}`;
                     } else {
                         console.error('Error deleting data:', response.message)
                     }
@@ -59,8 +57,7 @@ const groupDisplayData = (groups, page = currentPage) => {
                 if(confirm('Are you sure do you want to delete this group?')) {
                     const response = await deleteRequest(groups_url, button.dataset.id, type, token);
                     if(response.status < 300){
-                        alert(response.message);
-                        window.location.reload();
+                        window.location.href = `navigate/groups.html?updated=${true}&message=${response.message}`;
                     } else {
                         console.error('Error deleting data:', response.message)
                     }
