@@ -72,6 +72,10 @@
             text-align: start;
             width: 100%;
 
+            p {
+                margin-top: 10px;
+            }
+
             a {
                 color: blue;
 

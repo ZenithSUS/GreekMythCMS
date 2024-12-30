@@ -21,10 +21,18 @@ const groupDisplayData = (groups, page = currentPage) => {
             
         `).join(' ');
 
+        const modalChange = document.getElementById('modal-change');
+        const modalMessage = document.getElementById('confirm-message');
+        const confirmBtn = document.getElementById('confirmchangebtn');
+        const cancelBtn = document.getElementById('cancelchangebtn');
+
         const disableButton = document.querySelectorAll('.disable');
         disableButton.forEach(button => {
-            button.addEventListener('click', async () => {
-                if(confirm('Are you sure do you want to disable this group?')){
+            button.addEventListener('click', () => {
+                modalChange.style.display = 'block';
+                modalMessage.textContent = 'Are you sure do you want do disable this group?';
+
+                confirmBtn.addEventListener('click', async () => {
                     formData.append('type', 'disable');
                     const response = await editRequest(groups_url, button.dataset.id, formData, token);
                     if(response.status < 300) {
@@ -32,14 +40,22 @@ const groupDisplayData = (groups, page = currentPage) => {
                     } else {
                         console.error('Error deleting data:', response.message)
                     }
-                }
+                });
+
+                cancelBtn.addEventListener('click', () => {
+                    modalChange.style.display = 'none';
+                    modalMessage.textContent = '';
+                });
             });
-        })
+        });
 
         const enableButton = document.querySelectorAll('.enable');
         enableButton.forEach(button => {
-            button.addEventListener('click', async () => {
-                if(confirm('Are you sure do you want to enable this group?')){
+            button.addEventListener('click', () => {
+                modalChange.style.display = 'block';
+                modalMessage.textContent = 'Are you sure do you want do enable this group?';
+
+                confirmBtn.addEventListener('click', async () => {
                     formData.append('type', 'enable');
                     const response = await editRequest(groups_url, button.dataset.id, formData, token);
                     if(response.status < 300) {
@@ -47,23 +63,47 @@ const groupDisplayData = (groups, page = currentPage) => {
                     } else {
                         console.error('Error deleting data:', response.message)
                     }
-                }
+                });
+
+                cancelBtn.addEventListener('click', () => {
+                    modalChange.style.display = 'none';
+                    modalMessage.textContent = '';
+                });
+
             });
         })
 
         const deleteButton = document.querySelectorAll('.delete');
         deleteButton.forEach(button => {
-            button.addEventListener('click', async () => {
-                if(confirm('Are you sure do you want to delete this group?')) {
+            button.addEventListener('click', () => {
+                modalChange.style.display = 'block';
+                modalMessage.textContent = 'Are you sure do you want do delete this group?';
+
+                confirmBtn.addEventListener('click', async () => {
                     const response = await deleteRequest(groups_url, button.dataset.id, type, token);
                     if(response.status < 300){
                         window.location.href = `navigate/groups.html?updated=${true}&message=${response.message}`;
                     } else {
                         console.error('Error deleting data:', response.message)
                     }
-                }
+                });
+
+                cancelBtn.addEventListener('click', () => {
+                    modalChange.style.display = 'none';
+                    modalMessage.textContent = '';
+                });
+                
             });
         }); 
+    }
+
+    const handleNoData = () => {
+        const tableBody = document.querySelector('tbody');
+        tableBody.innerHTML = `
+            <tr>
+                <td rowspan="6">No Groups Available</td>
+            </tr>
+        `;
     }
 
     const elipsisContent = (content) => {
@@ -77,6 +117,11 @@ const groupDisplayData = (groups, page = currentPage) => {
     }
 
     if(groups && groups.status < 300){
+        if (groups.data.length === 0) {
+            handleNoData();
+            return;
+        }
+        
         const groupdata = sortGroups(groups)
         groupsTableData(groupdata)
 

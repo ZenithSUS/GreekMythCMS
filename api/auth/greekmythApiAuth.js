@@ -37,7 +37,7 @@ form.addEventListener('submit', async (e) => {
                 localStorage.setItem('user_id', data.data.user_id);
                 localStorage.setItem('theme', data.data.theme);
                 localStorage.setItem('font-style', data.data.font_style);
-                window.location.reload();
+                window.location.href = `index.html?updated=${true}&message=${data.message}`;
             }
 
             if (form.Process.value == "Register") {

@@ -35,8 +35,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         console.log(response)
         if(response.status < 300){
             changeButton.disabled = true;
-            alert(response.message);
-            window.location.href = 'index.html';
+            window.location.href = `index.html?updated=${true}&message=${response.message}`;
         } else {
             checkErrors(response.error);
         }

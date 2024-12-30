@@ -231,9 +231,7 @@ main {
             text-align: center;
             
             .close-container {
-                position: absolute;
-                top: 10px;
-                right: 20px;
+                float: right;
 
                 /* The Modal Close Button (x) */
                 .close {
@@ -292,6 +290,148 @@ main {
         }
     }
 
+    .modal-warning {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        background-color: transparent;
+        padding-top: 50px;
+        z-index: 1;
+
+        .modal-content {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            top: calc(10px + 20px);
+            left: 80px;
+            margin: 5% auto 15% auto;
+            width: fit-content;
+            background-color: var(--primary-color);
+            box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.5), -4px -4px 4px rgba(0, 0, 0, 0.5);
+            padding: 2rem;
+            border-radius: 20px;
+            text-align: center;
+
+            button {
+                font-size: 1rem;
+                padding: 14px 20px;
+                margin: 8px 0;
+                border: none;
+                cursor: pointer;
+                border-radius: 20px;
+                width: 100%;
+                opacity: 0.9;
+              }
+
+
+            /* Clear floats */
+            .clearfix::after {
+                content: "";
+                clear: both;
+                display: table;
+            }
+              
+            
+            .cancelbtn {
+                background-color: var(--button-color);
+                color: var(--light-color);
+
+                &:hover {
+                    background-color: var(--button-hover-color);
+                    color: var(--dark-color);
+                    transition: background-color 0.3s ease-in-out;
+                }
+            }
+        
+            .confirmbtn {
+                background-color: #f44336;
+                color: var(--dark-color);
+                
+                &:hover {
+                    background-color: var(--hover-color);
+                    color: var(--dark-color);
+                    transition: background-color 0.3s ease-in-out;
+                }
+            }
+        }
+    }
+
+    .modal-change {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        background-color: transparent;
+        padding-top: 50px;
+        z-index: 1;
+
+        .modal-content {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            top: calc(10px + 20px);
+            left: 80px;
+            margin: 5% auto 15% auto;
+            width: fit-content;
+            background-color: var(--primary-color);
+            box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.5), -4px -4px 4px rgba(0, 0, 0, 0.5);
+            padding: 2rem;
+            border-radius: 20px;
+            text-align: center;
+
+            button {
+                font-size: 1rem;
+                padding: 14px 20px;
+                margin: 8px 0;
+                border: none;
+                cursor: pointer;
+                border-radius: 20px;
+                width: 100%;
+                opacity: 0.9;
+              }
+
+
+            /* Clear floats */
+            .clearfix::after {
+                content: "";
+                clear: both;
+                display: table;
+            }
+              
+            
+            .cancelbtn {
+                background-color: var(--button-color);
+                color: var(--light-color);
+
+                &:hover {
+                    background-color: var(--button-hover-color);
+                    color: var(--dark-color);
+                    transition: background-color 0.3s ease-in-out;
+                }
+            }
+        
+            .confirmbtn {
+                background-color: #f44336;
+                color: var(--dark-color);
+                
+                &:hover {
+                    background-color: var(--hover-color);
+                    color: var(--dark-color);
+                    transition: background-color 0.3s ease-in-out;
+                }
+            }
+        }
+    }
+
     .delete-account-container {
         display: none;
         align-items: center;
@@ -323,19 +463,10 @@ main {
     
             .gridBox {
                 display: flex;
-                justify-content: space-evenly;
-                margin-top: 2rem;
+                flex-direction: column;
+                margin-top: 0.5rem;
+                gap: 10px;
                 width: 100%;
-    
-                .userInfo {
-                    display: flex;
-                    flex-direction: column;
-                    gap: 10px;
-    
-                    .userData {
-                        color: var(--dark-color);
-                    }
-                }
             }
     
             .input-field {
@@ -343,7 +474,7 @@ main {
                 flex-direction: column;
                 margin: 10px 0 10px 0;
             }
-    
+
             label { 
                 font-weight: bold;
                 margin-bottom: 0.25rem;
@@ -405,6 +536,10 @@ main {
             text-align: center;
             background-color: var(--primary-color);
             box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.5), -4px -4px 4px rgba(0, 0, 0, 0.5);
+
+            h1 {
+                letter-spacing: 2px;
+            }
         }
     }
 }

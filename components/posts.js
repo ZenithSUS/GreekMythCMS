@@ -8,7 +8,7 @@ const postDisplayData = (posts, page = currentPage) => {
            <tr>
                 <td>${post.username}</td>
                 <td>${elipsisContent(post.title)}</td>
-                <td class='post-content'>${elipsisContent(post.content)}</td>
+                <td class='post-content'>${elipsisContent(post.content ? post.content : "N/A")}</td>
                 <td>${DateFormat(post.created_at)}</td>
                 <td>${post.name != null ? post.name : "N/A"}</td>
                 <td>${post.status === 1 ? "Permited" : "Disabled"}</td>
@@ -21,11 +21,19 @@ const postDisplayData = (posts, page = currentPage) => {
             
         `).join(' ');
 
+        const modalChange = document.getElementById('modal-change');
+        const modalMessage = document.getElementById('confirm-message');
+        const confirmBtn = document.getElementById('confirmchangebtn');
+        const cancelBtn = document.getElementById('cancelchangebtn');
+
         // Get the disable button and add an event
         const disableButton = document.querySelectorAll('.disable');
         disableButton.forEach(button => {
-            button.addEventListener('click', async() => {
-                if(confirm('Are you sure do you want to disable this post?')){
+            button.addEventListener('click', () => {
+                modalChange.style.display = 'block';
+                modalMessage.textContent = 'Are you sure do you want to disable this post?';
+
+                confirmBtn.addEventListener('click', async () => {
                     formData.append('type', 'disable');
                     const response = await editRequest(posts_url, button.dataset.id, formData, token);
                     if(response.status < 300) {
@@ -33,40 +41,73 @@ const postDisplayData = (posts, page = currentPage) => {
                     } else {
                         console.error('Error deleting data:', response.message)
                     }
-                }
+                });
+
+                cancelBtn.addEventListener('click', () => {
+                    modalChange.style.display = 'none';
+                    modalMessage.textContent = '';
+                });
+
             });
         });
 
          // Get the disable button and add an event
          const enableButton = document.querySelectorAll('.enable');
          enableButton.forEach(button => {
-             button.addEventListener('click', async() => {
-                 if(confirm('Are you sure do you want do enable this post?')){
+            button.addEventListener('click', () => {
+                modalChange.style.display = 'block';
+                modalMessage.textContent = 'Are you sure do you want to enable this post?';
+
+                confirmBtn.addEventListener('click', async () => {
                     formData.append('type', 'enable');
-                     const response = await editRequest(posts_url, button.dataset.id, formData, token);
-                     if(response.status < 300) {
+                    const response = await editRequest(posts_url, button.dataset.id, formData, token);
+                    if(response.status < 300) {
                         window.location.href = `navigate/posts.html?updated=${true}&message=${response.message}`;
-                     } else {
-                         console.error('Error deleting data:', response.message)
-                     }
-                 }
-             });
+                    } else {
+                        console.error('Error deleting data:', response.message)
+                    }
+                });
+
+                cancelBtn.addEventListener('click', () => {
+                    modalChange.style.display = 'none';
+                    modalMessage.textContent = '';
+                });
+
+            });
          });
 
         // Get the delete button and add an event
         const deleteButton = document.querySelectorAll('.delete')
         deleteButton.forEach(button => {
-            button.addEventListener('click', async () =>{
-                if(confirm('Are you sure do you want do delete this post?')){
+            button.addEventListener('click', () =>{
+                modalChange.style.display = 'block';
+                modalMessage.textContent = 'Are you sure do you want do delete this post?';
+
+                confirmBtn.addEventListener('click', async() => {
                     const response = await deleteRequest(posts_url, button.dataset.id, type, token);
                     if(response.status < 300) {
                         window.location.href = `navigate/posts.html?updated=${true}&message=${response.message}`;
                     } else {
                         console.error('Error deleting data:', response.message)
                     }
-                }
+                });
+                
+                cancelBtn.addEventListener('click', () => {
+                    modalChange.style.display = 'none';
+                    modalMessage.textContent = '';
+                });
+                
             });
-        })
+        });
+    }
+
+    const handleNoData = () => {
+        const tableBody = document.querySelector('tbody');
+        tableBody.innerHTML = `
+            <tr>
+                <td colspan="7">No Posts Available</td>
+            </tr>
+        `;
     }
 
     const sortPosts = (posts) => {
@@ -86,6 +127,11 @@ const postDisplayData = (posts, page = currentPage) => {
     }
 
     if(posts && posts.status < 300){
+        if (posts.data.length === 0) {
+            handleNoData();
+            return;
+        }
+
         const postData = sortPosts(posts);
         postTableData(postData);
 
@@ -127,5 +173,7 @@ const postDisplayData = (posts, page = currentPage) => {
         document.getElementById('pagination-number').innerHTML = `
             <h3>Page ${currentPage} of ${totalPages}</h3>
         `;
+    } else {
+        handleNoData();
     }
 }
