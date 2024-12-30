@@ -31,6 +31,11 @@ document.addEventListener('DOMContentLoaded', async () => {
         console.error('Fetch failed status:', user.message);
     }
 
+    const modalChange = document.getElementById('modal-change');
+    const modalMessage = document.getElementById('confirm-message');
+    const confirmBtn = document.getElementById('confirmchangebtn');
+    const cancelBtn = document.getElementById('cancelchangebtn');
+
     // Get the edit Button and add an event
     document.getElementById('edit-user').addEventListener('click', (e) => {
         e.preventDefault();
@@ -38,8 +43,11 @@ document.addEventListener('DOMContentLoaded', async () => {
     });
 
     // Get the delete Button and add an event
-    document.getElementById('delete-user').addEventListener('click', async () => {
-        if(confirm('Are you sure do you want to delete this user?')){
+    document.getElementById('delete-user').addEventListener('click', () => {
+        modalChange.style.display = 'block';
+        modalMessage.textContent = 'Are you sure do you want do delete this user?';
+
+        confirmBtn.addEventListener('click', async () => {
             const response = await deleteRequest(users_url, user_id, token);
             if(response.status < 300) {
                 console.log(response)
@@ -47,7 +55,12 @@ document.addEventListener('DOMContentLoaded', async () => {
             } else {
                 console.error('Error deleting data:', response.message)
             }
-        }
+        });
+
+        cancelBtn.addEventListener('click', () => {
+            modalChange.style.display = 'none';
+            modalMessage.textContent = '';
+        });
     })
 
     // Get the Go Back button and add an event 

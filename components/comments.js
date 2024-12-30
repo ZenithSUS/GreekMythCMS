@@ -22,11 +22,19 @@ const commentDisplayData = (comments, page = currentPage) => {
             
         `).join(' ');
 
+        const modalChange = document.getElementById('modal-change');
+        const modalMessage = document.getElementById('confirm-message');
+        const confirmBtn = document.getElementById('confirmchangebtn');
+        const cancelBtn = document.getElementById('cancelchangebtn');
+
         // Get the disable button and add an event
         const disableButton = document.querySelectorAll('.disable');
         disableButton.forEach(button => {
-            button.addEventListener('click', async() => {
-                if(confirm('Are you sure do you want to disable this comment?')){
+            button.addEventListener('click', () => {
+                modalChange.style.display = 'block';
+                modalMessage.textContent = 'Are you sure do you want to disable this comment?';
+
+                confirmBtn.addEventListener('click', async () => {
                     formData.append('type', 'disable');
                     const response = await editRequest(comments_url, button.dataset.id, formData, token);
                     if(response && response.status < 300) {
@@ -34,7 +42,13 @@ const commentDisplayData = (comments, page = currentPage) => {
                     } else {
                         console.error('Error deleting data:', response.message)
                     }
-                }
+                });
+
+                cancelBtn.addEventListener('click', () => {
+                    modalChange.style.display = 'none';
+                    modalMessage.textContent = '';
+                });
+                
             });
         });
 
@@ -42,7 +56,10 @@ const commentDisplayData = (comments, page = currentPage) => {
          const enableButton = document.querySelectorAll('.enable');
          enableButton.forEach(button => {
              button.addEventListener('click', async() => {
-                 if(confirm('Are you sure do you want do enable this comment?')){
+                modalChange.style.display = 'block';
+                modalMessage.textContent = 'Are you sure do you want to enable this comment?';
+
+                confirmBtn.addEventListener('click', async () => {
                     formData.append('type', 'enable');
                      const response = await editRequest(comments_url, button.dataset.id, formData, token);
                      if(response.status < 300) {
@@ -50,24 +67,47 @@ const commentDisplayData = (comments, page = currentPage) => {
                      } else {
                          console.error('Error deleting data:', response.message)
                      }
-                 }
+                });
+
+                cancelBtn.addEventListener('click', () => {
+                    modalChange.style.display = 'none';
+                    modalMessage.textContent = '';
+                });
+                 
              });
          });
 
          // Get the delete button and add an event
         const deleteButton = document.querySelectorAll('.delete')
         deleteButton.forEach(button => {
-            button.addEventListener('click', async () =>{
-                if(confirm('Are you sure do you want do delete this comment?')){
+            button.addEventListener('click', () =>{
+                modalChange.style.display = 'block';
+                modalMessage.textContent = 'Are you sure do you want to delete this comment?';
+
+                confirmBtn.addEventListener('click', async () => {
                     const response = await deleteRequest(comments_url, button.dataset.id, type, token);
                     if(response.status < 300) {
                         window.location.href = `navigate/comments.html?updated=${true}&message=${response.message}`;
                     } else {
                         console.error('Error deleting data:', response.message)
                     }
-                }
+                });
+
+                cancelBtn.addEventListener('click', () => {
+                    modalChange.style.display = 'none';
+                    modalMessage.textContent = '';
+                });
             });
         })
+    }
+
+    const handleNoData = () => {
+        const tableBody = document.querySelector('tbody');
+        tableBody.innerHTML = `
+            <tr>
+                <td rowspan="7">No Comments Available</td>
+            </tr>
+        `;
     }
 
     const sortedComments = (comments) => {
@@ -87,6 +127,11 @@ const commentDisplayData = (comments, page = currentPage) => {
     }
 
     if(comments && comments.status < 300){
+        if (comments.data.length === 0) {
+            handleNoData();
+            return;
+        }
+
         commentsTableData(sortedComments(comments))
 
         // Add pagination controls 

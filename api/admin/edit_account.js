@@ -36,8 +36,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         const response  = await editRequest(users_url, user_id, formData, token);
         if(response.status < 300){
             changeButton.disabled = true;
-            alert(response.message);
-            window.location.href = 'index.html';
+            window.location.href = `index.html?updated=${true}&message=${response.message}`;
         } else {
             checkErrors(response.error);
         }

@@ -86,7 +86,7 @@ document.addEventListener('DOMContentLoaded', () => {
             formData.append('font_style', selectedFont);
             const request = await editRequest(users_url, user_id, formData, token);
             if (request.status < 300) {
-                window.location.href = 'index.html';
+                window.location.href = `index.html?updated=${true}&message=${request.message}`;
             }
         } catch (error) {
             console.error('Failed to change settings:', error);

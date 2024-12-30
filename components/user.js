@@ -21,22 +21,45 @@ const userDisplayData = (user, page = currentPage) =>{
             
         `).join(' ');
 
+
+        const modalChange = document.getElementById('modal-change');
+        const modalMessage = document.getElementById('confirm-message');
+        const confirmBtn = document.getElementById('confirmchangebtn');
+        const cancelBtn = document.getElementById('cancelchangebtn');
+
         // Get the delete Button and add an event
         const deleteButton = document.querySelectorAll('.delete');
         deleteButton.forEach(button => {
-            button.addEventListener('click', async () => {
-                if(confirm('Are you sure do you want do delete this user?')){
+            button.addEventListener('click', () => {
+                modalChange.style.display = 'block';
+                modalMessage.textContent = 'Are you sure do you want do delete this user?';
+
+                confirmBtn.addEventListener('click', async () => {
                     const response = await deleteRequest(users_url, button.dataset.id, type, token);
                     if(response.status < 300) {
                         window.location.href = `navigate/users.html?updated=${true}&message=${response.message}`;
                     } else {
                         console.error('Error deleting data:', response.message)
                     }
-                }
+                });
+
+                cancelBtn.addEventListener('click', () => {
+                    modalChange.style.display = 'none';
+                    modalMessage.textContent = '';
+                });
+
             });
         })
     }
 
+    const handleNoData = () => {
+        const tableBody = document.querySelector('tbody');
+        tableBody.innerHTML = `
+            <tr>
+                <td rowspan="6">No Users Available</td>
+            </tr>
+        `;
+    }
 
     const DateFormat = (date) => {
         const newDate = new Date(date);
@@ -45,6 +68,11 @@ const userDisplayData = (user, page = currentPage) =>{
     }
 
     if(user && user.status < 300){
+        if(user.data.length === 0){
+            handleNoData();
+            return;
+        }
+
         userTableData(user);
 
         // Add pagination controls 
