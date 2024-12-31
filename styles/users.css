@@ -161,13 +161,24 @@
                     color: var(--light-color);
                     border-radius: 0.5rem;
                     padding: 0.5rem;
-                    font-size: 1rem;
+                    font-size: 1.2rem;
                     cursor: pointer;
             
                     &:hover {
                         transition: background-color 0.5s ease-in-out;
                         background-color: var(--button-hover-color);
                         color: var(--dark-color);
+                    }
+                }
+
+                .delete {
+                    background-color: red;background-color: #f44336;
+                    color: var(--dark-color);
+                    
+                    &:hover {
+                        background-color: var(--hover-color);
+                        color: var(--dark-color);
+                        transition: background-color 0.3s ease-in-out;
                     }
                 }
             }

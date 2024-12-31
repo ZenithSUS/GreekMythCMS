@@ -45,6 +45,7 @@ input[type="text"]:focus, input[type="password"]:focus {
 span {
     color: red;
     font-weight: bold;
+    letter-spacing: 0.5px;
     margin-top: 0.2rem;
 }
 

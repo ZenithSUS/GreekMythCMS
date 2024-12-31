@@ -23,7 +23,7 @@ document.addEventListener('DOMContentLoaded', async () => {
             <p>Total User Joined: <span>${data.total_people}</span></p>
             <div class='group-options'>
                 <button id='statusButton'>${data.status === 1 ? "Disable" : "Enable"}</button>
-                <button id='delete'>Delete</button>
+                <button id='delete' class='delete'>Delete</button>
                 <button id='back'>Go Back</button> 
             </div>
         `;

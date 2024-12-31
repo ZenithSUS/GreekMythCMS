@@ -13,7 +13,7 @@
 </head>
 <body>
     <div class="registerContainer">
-        <form id="registerForm" enctype="multipart/form-data">
+        <form id="registerForm" class="registerForm" enctype="multipart/form-data">
             <h1>Register</h1>
             <div class="input-field">
                 <label for="Username">Username</label>
@@ -39,8 +39,16 @@
                 <input type="file" name="image" accept="image/*" id="image">
                 <p>Maximum of 5MB</p>
             </div>
+            <div class="input-field" id="sendCode">
+                <input type="text" id="code" name="code">
+                <div class="codeOptions">
+                    <button type="submit" id="sendCodeBtn" value="Send_code">Send</button>
+                    <button type="submit" id="verifyCodeBtn" value="Verify_code">Verify</button>
+                </div>
+                <span id="successMessage" class="successMessage"></span>
+            </div>
             <div class="group-container">
-                <button type="submit" id="Process" value="Register">Register</button>
+                <button type="submit" id="registerBtn" value="Register">Register</button>
                 <p>Already have an account? <a href="auth/login.html">Sign In</a></p>
             </div>
         </form>

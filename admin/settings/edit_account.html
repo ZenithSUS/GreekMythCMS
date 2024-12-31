@@ -111,6 +111,10 @@
                             <label for="emailEdit">Email</label> 
                             <input type="text" name="emailEdit" id="emailEdit" placeholder="Email"> 
                         </div>
+                        <div class="input-field">
+                            <label for="imageEdit">Profile</label> 
+                            <input type="file" name="imageEdit" id="imageEdit" placeholder="Profile"> 
+                        </div> 
                         <div class="edit-options-container">
                             <div class="edit-options">
                                 <button type="button" id="Change">Save Changes</button> 
@@ -127,5 +131,18 @@
     <script type="text/javascript" src="api/auth/logout.js"></script>
     <script type="text/javascript" src="api/admin/delete_account.js"></script>
     <script type="text/javascript" src="api/field_check/greekMythApiFieldErrors.js"></script>
+    <script type="text/javascript">
+        var imageInput = document.getElementById('imageEdit');
+        var image = document.getElementById('userImage');
+
+        imageInput.addEventListener("change", function () {
+            if(this.files && this.files[0]){
+                let url = URL.createObjectURL(this.files[0]);
+
+                image.src = url;
+                image.style.display = 'block';
+            }
+        })
+    </script>
 </body>
 </html>
