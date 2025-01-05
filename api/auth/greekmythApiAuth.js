@@ -13,6 +13,7 @@ const verifyCodeBtn = document.getElementById('verifyCodeBtn');
 const verifyEmailBtn = document.querySelector('#verifyEmailBtn');
 const changeEmailBtn = document.querySelector('#changeEmailBtn');
 const recoverBtn = document.getElementById('recoverBtn');
+const successMessage = document.getElementById('successMessage');
 
 // Create FormData to pass values to the API on backend
 let formData = new FormData();
@@ -90,7 +91,7 @@ if(verifyCodeBtn){
         // Handle the response
         if (data.status < 300) {
             emailVerified = true;
-            document.getElementById('successMessage').textContent = data.message;
+            successMessage.textContent = data.message;
         } else {
             emailVerified = false;
             checkErrors(data.error);
@@ -128,6 +129,7 @@ if(recoverBtn){
         formData.append('email', santizeInput(recoverForm.email.value));
         formData.append('password', santizeInput(recoverForm.password.value));
         formData.append('confirm_password', santizeInput(recoverForm.confirm_password.value));
+        formData.append('emailVerified', emailVerified);
         formData.append('Process', santizeInput(recoverBtn.value));
         submitData(formData, recoverBtn);
     });
@@ -154,8 +156,13 @@ document.addEventListener('click', (e) => {
             e.target.textContent = 'Check Email';
             e.target.id = 'verifyEmailBtn';
             recoverForm.email.disabled = false;
+            recoverForm.code.disabled = true;
+            recoverForm.password.disabled = true;
+            recoverForm.confirm_password.disabled = true;
+            recoverForm.recoverBtn.disabled = true;
             sendCodeBtn.disabled = true;
             verifyCodeBtn.disabled = true;
+            successMessage.textContent = '';
         }
     }
 });
@@ -215,10 +222,18 @@ const submitData = async (formData, button) => {
             sendCodeBtn.disabled = false;
             verifyCodeBtn.disabled = false;
             recoverForm.email.disabled = true;
+            recoverForm.code.disabled = false;
+            recoverForm.password.disabled = false;
+            recoverForm.confirm_password.disabled = false;
+            recoverForm.recoverBtn.disabled = false;
         }
 
         if(button === sendCodeBtn){
-            document.getElementById('successMessage').textContent = data.message;
+            successMessage.textContent = data.message;
+        }
+
+        if(button === recoverBtn){
+            window.location.href `auth/login.html?updated=${true}&message=${data.message}`;
         }
 
     } else {
