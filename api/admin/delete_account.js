@@ -46,11 +46,9 @@ const deleteProcess = (passwordForm) => {
 
                 console.log(response_delete);
                 if (response_delete.status < 300) {
-                    alert('Account deleted successfully.');
+                    confirmButton.disabled = true;
                     localStorage.clear();
-                    window.location.reload();
-                } else {
-                    alert('Failed to delete account.');
+                    window.location.href = `auth/login.html?updated=${true}&message=${response_delete.message}`;
                 }
             } else {
                 checkErrors(response_checkField.error);

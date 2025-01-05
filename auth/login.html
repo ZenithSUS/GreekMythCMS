@@ -6,14 +6,19 @@
     <link rel="stylesheet" href="global.css">
     <link rel="stylesheet" href="styles/auth.css">
     <title>Login</title>
+    <script type="text/javascript" src="components/auth_notification.js"></script>
     <script>
        token = localStorage.getItem('token');
        if(token) window.location.href = 'index.html';
     </script>
 </head>
 <body>
+    <div class="modal-auth" id="modal-auth">
+        <div class="modal-content" id="modal-content">Eh</div>
+    </div>
+
     <div class="loginContainer">
-        <form id="loginForm">
+        <form id="loginForm" class="loginForm">
             <h1>Login</h1>
             <div class="input-field">
                 <label for="User">Username or Email</label>
@@ -24,8 +29,11 @@
                 <input type="password" placeholder="Password" id="Password" name="Password"/>
             </div>
             <div class="group-container">
-                <button type="submit" name="login" id="Process" value="Login">Login</button>
-                <p>Dont have an account? <a href="auth/register.html">Register</a></p>
+                <button type="submit" name="login" id="loginBtn" value="Login">Login</button>
+                <div class="auth-links">
+                    <p>Dont have an account? <a href="auth/register.html">Register</a></p>
+                    <p>Forget Password <a href="auth/recover.html">Click here</a></p>
+                </div>
                 <span id="auth_status" name="auth_status"></span>
             </div>
         </form>

@@ -26,14 +26,18 @@ document.addEventListener('DOMContentLoaded', async () => {
     changeButton.addEventListener('click', async () => { 
         const username = santizeInput(form.usernameEdit.value) ? santizeInput(form.usernameEdit.value) : "";
         const email = santizeInput(form.emailEdit.value) ? santizeInput(form.emailEdit.value) : "";
+        let fileInput = document.getElementById('imageEdit');
+        const file = fileInput.files[0];
         const type = "admin";
 
         const formData = new FormData();
         formData.append('usernameEdit', username);
         formData.append('emailEdit', email);
+        formData.append('image', file ? file : null);
         formData.append('type', type);
 
         const response  = await editRequest(users_url, user_id, formData, token);
+        console.log(response)
         if(response.status < 300){
             changeButton.disabled = true;
             window.location.href = `index.html?updated=${true}&message=${response.message}`;

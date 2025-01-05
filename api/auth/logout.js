@@ -27,7 +27,7 @@ document.getElementById('confirmbtn').addEventListener('click', async () =>{
 
     if(data.message == "Success"){
         localStorage.clear();
-        window.location.reload();
+        window.location.href = `auth/login.html?updated=${true}&message=${"You have been Logged out!"}`
     }
 });
 

@@ -23,7 +23,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     }
 
     const form = document.querySelector('.form-container form');
-    const changeButton = document.getElementById('Change');
+    const changeButton = document.querySelector('#Change');
 
         form.addEventListener('submit', (e) => {
             e.preventDefault(); 
