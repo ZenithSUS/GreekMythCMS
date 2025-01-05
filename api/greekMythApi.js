@@ -44,7 +44,7 @@ let fetchedData;
 // Fetch Admin Data
 async function fetchAdminData() {
     try {
-      const response = await fetch('http://localhost/GreekMythApi/api/users.php?user_id=' + user_id, {
+      const response = await fetch('https://zenithsus.infinityfreeapp.com/GreekMythApi/api/users.php?user_id=' + user_id, {
           method: "GET",
           headers: {
               "Content-Type": "application/json",
