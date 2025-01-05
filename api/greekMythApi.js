@@ -1,8 +1,8 @@
 // Endpoints for GreekMyth API
-const posts_url = "http://localhost/GreekMythApi/api/posts.php";
-const users_url = "http://localhost/GreekMythApi/api/users.php";
-const groups_url = "http://localhost/GreekMythApi/api/groups.php";
-const comments_url = "http://localhost/GreekMythApi/api/comments.php";
+const posts_url = "https://zenithsus.infinityfreeapp.com/GreekMythApi/api/posts.php";
+const users_url = "https://zenithsus.infinityfreeapp.com/GreekMythApi/api/users.php";
+const groups_url = "https://zenithsus.infinityfreeapp.com/GreekMythApi/api/groups.php";
+const comments_url = "https://zenithsus.infinityfreeapp.com/GreekMythApi/api/comments.php";
 
 
 // Get the current URL
