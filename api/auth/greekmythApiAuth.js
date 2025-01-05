@@ -1,5 +1,5 @@
 // URL for the API endpoint
-const url = "http://localhost/GreekMythApi/api/auth.php";
+const url = "https://zenithsus.infinityfreeapp.com/GreekMythApi/api/auth.php";
 
 // Elements of every authorization pages
 const loginForm = document.querySelector('#loginForm');
