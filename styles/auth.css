@@ -25,13 +25,13 @@
     }
 }
 
-.loginContainer, .registerContainer {
+.loginContainer, .registerContainer, .recoverContainer {
     display: flex;
     justify-content: center;
     align-items: center;
     min-height: 100vh;
 
-    .loginForm, .registerForm {
+    .loginForm, .registerForm, .recoverForm {
         padding: 1rem;
         margin: 1rem;
         display: flex;
@@ -43,14 +43,14 @@
         background-position: center;
         background-attachment: fixed;
         width: 100%;
-        max-width: 400px;
+        max-width: 500px;
         box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.5), -4px -4px 4px rgba(0, 0, 0, 0.5);
 
         h1 {
             text-align: center;
         }
 
-        .input-field {  
+        .input-field, .verification-field {  
             display: flex;
             flex-direction: column;
             margin: 10px 0 10px 0;
@@ -60,6 +60,7 @@
                 font-weight: bold;
                 margin-bottom: 0.25rem;
             }
+
             input {
                 width: 100%;
                 padding: 0.5rem;
@@ -85,6 +86,12 @@
                     width: 100%;
                     margin-top: 5px;
                 }
+
+                button:disabled {
+                    cursor: not-allowed; 
+                    background-color: gray; 
+                  }
+                  
             }
 
             .successMessage {
@@ -93,6 +100,11 @@
                 width: 100%;
                 text-align: center;
             }
+        }
+
+        .verification-field > .error-message {
+            text-align: center;
+            width: 100%;
         }
 
         .image-field {
@@ -127,6 +139,11 @@
                 &:hover {
                     color: skyblue;
                 }
+            }
+
+            .auth-links {
+                display: flex;
+                justify-content: space-between;
             }
         }
 

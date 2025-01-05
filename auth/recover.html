@@ -1,0 +1,51 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <base href="/xampp/htdocs/GreekMythCMS/">
+    <link rel="icon" href="src/images/logo_transparent.png">
+    <link rel="stylesheet" href="global.css">
+    <link rel="stylesheet" href="styles/auth.css">
+    <title>Recover Account</title>
+    <script type="text/javascript">
+        token = localStorage.getItem('token');
+        if(token) window.location.href = 'index.html';
+    </script>
+</head>
+<body>
+    <div class="recoverContainer">
+        <form id="recoverForm" class="recoverForm">
+            <h1>Recover Account</h1>
+            <div class="input-field">
+                <label for="Email">Email</label>
+                <input type="text" name="email" id="email">
+            </div>
+            <div class="verification-field">
+                <label for="Code">Verification Code</label>
+                <input type="text" name="code" id="code">
+                <div class="codeOptions">
+                    <button type="submit" id="verifyEmailBtn" value="Verify_email">Check Email</button>
+                    <button type="submit" id="sendCodeBtn" value="Send_code" disabled>Send</button>
+                    <button type="submit" id="verifyCodeBtn" value="Verify_code" disabled>Verify</button>
+                </div>
+                <span id="successMessage" class="successMessage"></span>
+            </div>
+            <div class="input-field">
+                <label for="Password">Password</label>
+                <input type="password" name="password" id="password" class="passwordValid">
+                <span id="passwordValid"></span>
+            </div>
+            <div class="input-field">
+                <label for="Confirm Password">Confirm Password</label>
+                <input type="password" name="confirm_password" id="confirm_password">
+            </div>
+            <div class="group-container">
+                <button type="submit" id="recoverBtn" value="Recover">Submit</button>
+                <p>Already have an account? <a href="auth/login.html">Sign In</a></p>
+            </div>
+        </form>
+    </div>
+    <script src="api/auth/greekmythApiAuth.js"></script>
+    <script src="api/field_check/greekMythApiFieldErrors.js"></script>
+</body>
+</html>

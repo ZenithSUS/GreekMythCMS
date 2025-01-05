@@ -1,4 +1,10 @@
 const checkErrors = (data) => {
+    const successMessage = document.querySelector('#successMessage');
+    
+    if(successMessage) {
+        successMessage.textContent = '';
+    }
+
     const errorMessage = document.querySelectorAll('.error-message');
     const validationMessage = document.querySelectorAll('.input-validation');
 

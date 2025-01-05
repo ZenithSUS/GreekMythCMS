@@ -1,15 +1,24 @@
+// URL for the API endpoint
+const url = "http://localhost/GreekMythApi/api/auth.php";
+
+// Elements of every authorization pages
 const loginForm = document.querySelector('#loginForm');
 const regForm = document.querySelector('#registerForm');
+const recoverForm = document.querySelector('#recoverForm');
 const sendCode = document.querySelector('#sendCode');
 const loginBtn = document.getElementById('loginBtn');
 const registerBtn = document.getElementById('registerBtn');
 const sendCodeBtn = document.getElementById('sendCodeBtn');
 const verifyCodeBtn = document.getElementById('verifyCodeBtn');
-const url = "http://localhost/GreekMythApi/api/auth.php";
+const verifyEmailBtn = document.querySelector('#verifyEmailBtn');
+const changeEmailBtn = document.querySelector('#changeEmailBtn');
+const recoverBtn = document.getElementById('recoverBtn');
 
+// Create FormData to pass values to the API on backend
 let formData = new FormData();
 let emailVerified = false;
 
+// Sanitize input to prevent XSS
 const santizeInput = (input) => {
     return input.replace(/&/g, '&amp;')
                 .replace(/>/g, "&gt;")
@@ -18,10 +27,12 @@ const santizeInput = (input) => {
                 .replace(/'/g, '&#39;');
 };
 
+// If the login button is present in the document
 if(loginBtn) {
     loginBtn.addEventListener('click', (e) => {
         e.preventDefault();
         
+        // Append form data for login
         formData.append('User', santizeInput(loginForm.User.value));
         formData.append('Password', santizeInput(loginForm.Password.value));
         formData.append('Process', santizeInput(loginBtn.value));
@@ -30,13 +41,14 @@ if(loginBtn) {
     });
 }
 
-
+// If the register button is present in the document
 if(registerBtn){
     registerBtn.addEventListener('click', (e) => {
         e.preventDefault();
         let fileInput = document.getElementById('image');
         const file = fileInput.files[0];
     
+        // Append form data for registration
         formData.append('username', santizeInput(regForm.username.value));
         formData.append('email', santizeInput(regForm.email.value));
         formData.append('password', santizeInput(regForm.password.value));
@@ -48,14 +60,25 @@ if(registerBtn){
     });
 }
 
-
+// If the verify code button is present in the document
 if(verifyCodeBtn){
     verifyCodeBtn.addEventListener('click', async (e) => {
         e.preventDefault();
         const code = document.getElementById('code').value;
         formData.append('verification_code', code);
-        formData.append('Process', verifyCodeBtn.value)
         
+        // Append form data based on the form type (register/recover)
+        if(regForm){
+            formData.append('email', santizeInput(regForm.email.value));
+            formData.append('type', 'register');
+        }
+        if(recoverForm){
+            formData.append('email', santizeInput(recoverForm.email.value));
+            formData.append('type', 'recover');
+        }
+        formData.append('Process', verifyCodeBtn.value);
+        
+        // Send the data to the API
         const response = await fetch(url, {
             method: "POST",
             body: formData,
@@ -64,6 +87,7 @@ if(verifyCodeBtn){
         const data = await response.json();
         console.log(data);
 
+        // Handle the response
         if (data.status < 300) {
             emailVerified = true;
             document.getElementById('successMessage').textContent = data.message;
@@ -74,32 +98,85 @@ if(verifyCodeBtn){
     });
 }
 
-
+// If the send code button is present in the document
 if(sendCodeBtn){
     sendCodeBtn.addEventListener('click', (e) => {
         e.preventDefault();
-        formData.append('email', santizeInput(regForm.email.value));
+        
+        // Append form data based on the form type (register/recover)
+        if(regForm){
+            formData.append('email', santizeInput(regForm.email.value));
+            formData.append('type', 'register');
+        }
+        if(recoverForm){
+            formData.append('email', santizeInput(recoverForm.email.value));
+            formData.append('type', 'recover');
+        }
+    
         formData.append('Process', santizeInput(sendCodeBtn.value))
         submitData(formData, sendCodeBtn);
         startTimer(sendCodeBtn, 60);
     });
 }
 
+// If the recover button is present in the document
+if(recoverBtn){
+    recoverBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        
+        // Append form data for password recovery
+        formData.append('email', santizeInput(recoverForm.email.value));
+        formData.append('password', santizeInput(recoverForm.password.value));
+        formData.append('confirm_password', santizeInput(recoverForm.confirm_password.value));
+        formData.append('Process', santizeInput(recoverBtn.value));
+        submitData(formData, recoverBtn);
+    });
+}
+
+// Add event listener for dynamically created 'verifyEmailBtn'
+document.addEventListener('click', (e) => {
+    if (e.target && e.target.id === 'verifyEmailBtn') {
+        e.preventDefault();
+
+        // Ensure only 'verifyEmailBtn' is processed
+        if (e.target.id === 'verifyEmailBtn') {
+            formData.append('email', santizeInput(recoverForm.email.value));
+            formData.append('Process', santizeInput(e.target.value));
+            submitData(formData, e.target);
+        }
+    }
+
+    if (e.target && e.target.id === 'changeEmailBtn') {
+        e.preventDefault();
+
+        // Ensure only 'changeEmailBtn' is processed
+        if (e.target.id === 'changeEmailBtn') {
+            e.target.textContent = 'Check Email';
+            e.target.id = 'verifyEmailBtn';
+            recoverForm.email.disabled = false;
+            sendCodeBtn.disabled = true;
+            verifyCodeBtn.disabled = true;
+        }
+    }
+});
+
+// Function to start a timer for the send code button
 const startTimer = (button, duration) => {
     let timeRemaining = duration;
-    button.disabled = true;
     const timerInterval = setInterval(() => {
         if(timeRemaining <= 0) {
             clearInterval(timerInterval);
             button.disabled = false;
             button.textContent = 'Send Code';
         } else {
+            button.disabled = true;
             button.textContent = `Send Again in ${timeRemaining}s`;
             timeRemaining--;
         }
     }, 1000);
 };
 
+// Function to submit data to the API
 const submitData = async (formData, button) => {
     const response = await fetch(url, {
         method: "POST",
@@ -109,6 +186,7 @@ const submitData = async (formData, button) => {
     const data = await response.json();
     console.log(data);
 
+    // Handle the response
     if (data.status < 300) {
         
         if (button === loginBtn) {
@@ -121,6 +199,22 @@ const submitData = async (formData, button) => {
 
         if (button === registerBtn) {
             window.location.href = `auth/login.html?updated=${true}&message=${data.message}`;
+        }
+
+        if(button === recoverBtn){
+            window.location.href = `auth/login.html?updated=${true}&message=${data.message}`;
+        }
+        
+        if(button === verifyEmailBtn){
+            document.getElementById('successMessage').textContent = data.message;
+            verifyEmailBtn.textContent = 'Change Email';
+            verifyEmailBtn.id = 'changeEmailBtn';
+            
+            const errorMessage = document.querySelectorAll('.error-message');
+            errorMessage.forEach(message => message.remove());
+            sendCodeBtn.disabled = false;
+            verifyCodeBtn.disabled = false;
+            recoverForm.email.disabled = true;
         }
 
         if(button === sendCodeBtn){
