@@ -22,7 +22,7 @@
             </div>
             <div class="verification-field">
                 <label for="Code">Verification Code</label>
-                <input type="text" name="code" id="code">
+                <input type="text" name="code" id="code" disabled>
                 <div class="codeOptions">
                     <button type="submit" id="verifyEmailBtn" value="Verify_email">Check Email</button>
                     <button type="submit" id="sendCodeBtn" value="Send_code" disabled>Send</button>
@@ -32,15 +32,15 @@
             </div>
             <div class="input-field">
                 <label for="Password">Password</label>
-                <input type="password" name="password" id="password" class="passwordValid">
+                <input type="password" name="password" id="password" class="passwordValid" disabled>
                 <span id="passwordValid"></span>
             </div>
             <div class="input-field">
                 <label for="Confirm Password">Confirm Password</label>
-                <input type="password" name="confirm_password" id="confirm_password">
+                <input type="password" name="confirm_password" id="confirm_password" disabled>
             </div>
             <div class="group-container">
-                <button type="submit" id="recoverBtn" value="Recover">Submit</button>
+                <button type="submit" id="recoverBtn" value="Recover" disabled>Submit</button>
                 <p>Already have an account? <a href="auth/login.html">Sign In</a></p>
             </div>
         </form>
