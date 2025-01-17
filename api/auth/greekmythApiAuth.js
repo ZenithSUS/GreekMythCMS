@@ -187,9 +187,6 @@ const startTimer = (button, duration) => {
 const submitData = async (formData, button) => {
     const response = await fetch(url, {
         method: "POST",
-        headers : {
-            "Access-Control-Allow-Origin": "*",
-        },
         body: formData,
     });
 
