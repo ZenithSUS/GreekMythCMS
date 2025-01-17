@@ -187,7 +187,6 @@ const startTimer = (button, duration) => {
 const submitData = async (formData, button) => {
     const response = await fetch(url, {
         method: "POST",
-        mode: 'cors',
         body: formData,
     });
 
